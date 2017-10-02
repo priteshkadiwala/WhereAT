@@ -45,12 +45,24 @@ var createReview = function(text, email, location ) {
 	})
 };
 
-var createTag = function() {
-	return;
+var createTag = function(name) {
+	var tag = new Tag({
+		name: name,
+		ats: []
+	});
+	tag.save(function(err){
+		if(err) throw err;
+	});
 };
 
-var createEvent = function() {
-	return;
+var createEvent = function(name, description, email, location) {
+	var event = new Event({
+		name: name,
+		description: description,
+		time: Date.now()
+		//creator:
+		//location:
+	});
 };
 
 module.exports = {
