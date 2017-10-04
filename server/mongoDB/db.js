@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-var At = reuqire("./schema/at.js");
+var At = require("./schema/at.js");
 var User = require("./schema/user.js");
 var Review = require("./schema/review.js");
 var Tag = require("./schema/tag.js");
-var Event = reuqire("./schema/event.js");
+var Event = require("./schema/event.js");
 
 var createUser = function(email, username, userLevel) {
 	var user = new User({
@@ -19,10 +19,12 @@ var createUser = function(email, username, userLevel) {
 	});
 };
 
-var createAt = function(name, description) {
+var createAt = function(name, description, lat, long) {
 	var at = new At({
 		name: name,
 		description: description,
+		lat: lat,
+		long: long,
 		reviews: [],
 		tags: [],
 		votes: 0
@@ -64,6 +66,16 @@ var createEvent = function(name, description, email, location) {
 		//location:
 	});
 };
+
+var updateAt = function(At, name, description, lat, long, review, tag) {
+
+	At.name: name,
+	At.description: description,
+	At.lat: lat,
+	At.long: long,
+	At.review: review,
+	At.tag: tag
+}
 
 module.exports = {
 	//add all functions in here
