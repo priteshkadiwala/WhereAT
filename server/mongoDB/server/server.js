@@ -1,10 +1,14 @@
-var http = require('http');
+var express = require("express");
+var database = requre("../db.js");
+var server = express();
+var port = 3000;
 
-var server = http.createServer(function(req, res){
-
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Placeholder message');
+server.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
+server.listen(port, () => {
 
-server.listen(3000, '127.0.0.1');
+  console.log("Server is running...listening to port 3000");
+
+});
