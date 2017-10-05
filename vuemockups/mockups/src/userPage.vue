@@ -59,7 +59,8 @@ export default {
       isChangePassword: false,
       oldPassAttempt: "",
       newPass: "",
-      passSucc: false
+      passSucc: false,
+      temp: ""
     }
   },
   

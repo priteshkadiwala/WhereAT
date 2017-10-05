@@ -57,7 +57,8 @@ export default {
         totalNum: 3,
         
       },
-      isForm: false
+      isForm: false,
+      temp: ""
       
     }
   },
