@@ -52,12 +52,7 @@ export default {
         var temp = this.newObj.temptags.split(',');
         this.newObj.tags = temp;
         notSumbit = false;
-        axios.post('https://localhost:3000/At', newObj).then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        
       },
       getAddressData: function(addressData, placeResultData) {
         this.newObj.lat = addressData.latitude;
