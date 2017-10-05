@@ -7,9 +7,14 @@ var Event =  ("./event.js");
 var AtSchema = new Schema({
 	name: String,
 	description: String,
+	hours: String,
+	latitude: Number,
+	longitude: Number,
+	pictureUrls: [String],
 	reviews:[{type:mongoose.Schema.Types.ObjectId, ref: 'Review'}],
 	tags:[{type:mongoose.Schema.Types.ObjectId, ref: 'Tag'}],
-	votes: int
+	events:[{type:mongoose.Schema.Types.ObjectId, ref: 'Event'}],
+	votes: Number
 });
 
 

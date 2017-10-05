@@ -11,5 +11,5 @@ var EventSchema = new Schema({
 	time: Date
 });
 
-var Event = monoose.model('Event', EventSchema);
+var Event = mongoose.model('Event', EventSchema);
 module.exports = Event;

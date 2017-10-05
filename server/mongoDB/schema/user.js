@@ -7,7 +7,9 @@ var Event =  ("./event.js");
 var UserSchema = new Schema({
 	username: String,
 	email: String,
-	userLevel: int,
+	firstName: String,
+	lastNumber: String,
+	userLevel: Number,
 	favorites: [{type:mongoose.Schema.Types.ObjectId, ref: 'At'}],
 	reviews: [{type:mongoose.Schema.Types.ObjectId, ref: 'Review'}],
 	events: [{type:mongoose.Schema.Types.ObjectId, ref: 'Event'}]

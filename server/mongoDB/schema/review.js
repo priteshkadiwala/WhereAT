@@ -7,7 +7,7 @@ var ReviewSchema = new Schema({
 	text: String,
 	author: {type:mongoose.Schema.Types.ObjectId, ref: 'User'},
 	location: {type:mongoose.Schema.Types.ObjectId, ref: 'At'},
-	votes: int,
+	votes: Number,
 	date: Date
 });
 
