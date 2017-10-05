@@ -36,6 +36,13 @@ var updateUser = function(currEmail, newEmail, username, firstName, lastName) {
 		});
 };
 
+var getUser = function(email) {
+	User.findOne({email:email}, function(err, user) {
+		if (err) throw err;
+		return user;
+	});
+};
+
 var createAt = function(name, description, hours, latitiude, longitude, tags[]) {
 	var at = new At({
 		name: name,
@@ -71,6 +78,12 @@ var updateAt = function(currName, newName, description, hours, latitiude, longit
 	});
 };
 
+var getAt = function(name) {
+	At.findOne({name: name}, function(err, at){
+		if err throw err;
+		return at;
+	});
+};
 
 //NOT DONE NOT DONE NOT DONE NOT DONE
 var createReview = function(text, email, location ) {
@@ -135,11 +148,13 @@ module.exports = {
 	//add all functions in here
 	createUser,
 	updateUser,
+	getUser,
 	createEvent,
 	createTag,
 	createReview,
 	createAt,
 	updateAt,
+	getAt,
 	addTag,
 	addPictureUrl
 };
