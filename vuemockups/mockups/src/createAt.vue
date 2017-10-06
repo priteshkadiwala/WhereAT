@@ -24,9 +24,9 @@
 </template>
 
 <script>
-//require(db.js);
+require(db.js);
+
 import VueGoogleAutocomplete from 'vue-google-autocomplete'
-import axios from 'axios';
 
 export default {
   data () {
@@ -52,6 +52,7 @@ export default {
         var temp = this.newObj.temptags.split(',');
         this.newObj.tags = temp;
         notSumbit = false;
+        createAt(newObj.name, newObj.description, newObj.hours, newObj.lat, newObj.long, newObj.tags);
         
       },
       getAddressData: function(addressData, placeResultData) {
