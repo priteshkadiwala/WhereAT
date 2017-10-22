@@ -25,7 +25,30 @@
       <div id="hoursBox">
         <p>{{AtObject.hours}}</p>
       </div>
-    </div>
+      <div id="addRevDiv">
+          <form>
+            <button>Submit</button>
+            <input type="text" placeholder="Write a Review">
+          </form>
+      </div>
+      <ul>  
+        <li v-for="x in AtObject.reviews" id="review_li">
+          <div id="reviewParDiv">  
+              <div id="voteDiv">
+                <div id="voteButton">
+                  <button v-on:click="upVote">Vote!</button>
+                </div>
+                <div id="voteNum">
+                  <p>{{x.votes}}</p>
+                </div>
+              </div>
+              <div id="textDiv">
+                <h3>{{x.text}}</h3>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     <div v-show="isForm === true" id="formPage">
       <form>
         <label>Rename @</label><br><br>
@@ -34,11 +57,11 @@
         <input v-model="AtObject.description" type="text" name="description"><br><br>
         <label>Enter new Tags</label><br><br>
         <input v-model="AtObject.tagList" type="text" name="tags"><br><br>
-
       </form>
     </div>
     <button v-on:click="toggle">Toggle Editing</button>
   </div>
+</div>
 </template>
 
 <script>
@@ -54,6 +77,20 @@ export default {
         hours: "8:00 am - 9:00 pm",
         votes: 0,
         totalNum: 3,
+        reviews: [
+            {
+              votes: 30,
+              text: "this place was good"
+            },
+            {
+              votes: 15,
+              text: "eh."
+            },
+            {
+              votes: 2,
+              text: "this place was shit"
+            }
+        ],
 
       },
       isForm: false,
@@ -83,6 +120,10 @@ export default {
         },
         sendChanges: function() {
           console.log(this.AtObject);
+        },
+        upVote: function() {
+          //find way to increment right review
+          //probably by id
         }
 
   },
