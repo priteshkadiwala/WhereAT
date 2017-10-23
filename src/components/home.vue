@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-toolbar class="indigo">
-      <v-toolbar-title><router-link to="/">Where@</router-link></v-toolbar-title>
-    </v-toolbar>
+    <p>
+      Hello
+    </p>
   </v-app>
 </template>
 
