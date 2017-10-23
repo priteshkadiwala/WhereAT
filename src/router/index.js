@@ -1,4 +1,4 @@
-import home from './components/home.vue';
+import home from '../components/home.vue';
 
 
 export default [
