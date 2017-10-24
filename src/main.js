@@ -1,15 +1,20 @@
-import Vue from 'vue'
-import App from './App.vue'
-//import BootstrapVue from 'bootstrap-vue'
-import VueRouter from 'vue-router'
-import Routes from './routes'
-import VueResource from 'vue-resource'
-import auth from './auth/index'
-//import 'bootstrap-vue/dist/bootstrap-vue.css'
-//import 'bootstrap/dist/css/bootstrap.css'
 
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+
+import Vuetify from 'vuetify'
+import './stylus/main.styl'
+
+import App from './App'
+import Routes from './router/index'
+
+Vue.use(Vuetify)
 Vue.use(VueRouter);
 
+Vue.config.productionTip = false
+
+/* eslint-disable no-new */
 const router = new VueRouter({
   routes: Routes,
   mode: 'history'
@@ -17,6 +22,6 @@ const router = new VueRouter({
 
 new Vue({
   el: '#app',
-  render: h => h(App),
-  router: router
+  router,
+  render: h => h(App)
 })

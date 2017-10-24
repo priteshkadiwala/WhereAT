@@ -1,114 +1,97 @@
 <template>
-  <div>
-    <div style="cursor: pointer;" class="boxWhereAt" id="WhereAt"><router-link to="/">Where@</router-link></div>
-
-    <div style="cursor: pointer;" class="boxWhereAt">
-      <dropdown :visible="visAccount" @clickout="visAccount = false">
-        <span @click="visAccount = !visAccount" class="click-here">Account</span>
-        <div class="dialog" slot="dropdown">
-          <ul id="AccountList">
-            <li><router-link to="/accinfo">Account Information</router-link></li>
-            <li><a href="">My @'s</a></li>
-            <li><a href="">My favorite @'s</a></li>
-            <li v-if="!user.authenticated"><router-link to="/signin" exact>Sign In</router-link></li>
-            <li v-if="!user.authenticated"><router-link to="/signup" exact>Sign Up</router-link></li>
-            <li v-if="user.authenticated"><router-link to="/" v-on:click.native="logout()" >Logout</router-link></li>
-          </ul>
-        </div>
-      </dropdown>
-    </div>
-
-    <div style="cursor: pointer;" class="boxWhereAt" id="createat"><router-link to="/createat">Create@</router-link></div>
-
-    <div style="cursor: pointer;" class="boxWhereAt">
-      <dropdown :visible="visDonation" @clickout="visDonation = false">
-        <span @click="visDonation = !visDonation" class="click-here">Donation</span>
-        <div class="dialog" slot="dropdown">dialog</div>
-      </dropdown>
-    </div>
-
-    <div class="boxWhereAt">
-       <div class="search">
-          <!-- span class="icon"><i class="fa fa-search"></i></span> \ -->
-          <input type="text" class="searchTerm" placeholder="Search location ...">
-       </div>
-    </div>
-</div>
+  <v-app>
+    <v-navigation-drawer temporary v-model="sideNav">
+      <v-list>
+          <v-list-group v-for="item in menuItems" :value="item.active" v-bind:key="item.title">
+            <v-list-tile slot="item" @click="">
+              <v-list-tile-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile-content>
+              <v-list-tile-action>
+                <v-icon>keyboard_arrow_down</v-icon>
+              </v-list-tile-action>
+            </v-list-tile>
+            <div v-if="!signin">
+              <v-list-tile v-for="subItem in item.itemNS" v-bind:key="subItem.title" @click="">
+                <v-list-tile-action>
+                  <v-icon>{{ subItem.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </div>
+            <div v-if="signin">
+              <v-list-tile v-for="subItem in item.itemS" v-bind:key="subItem.title" @click="">
+                <v-list-tile-action>
+                  <v-icon>{{ subItem.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </div>
+          </v-list-group>
+        </v-list>
+        <v-list v-for="item in otherItems" v-bind:key="item.title">
+          <v-list-tile @click="">
+            <v-list-tile-action>
+              <v-icon class="ma-1">{{item.icon}}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content class="ma-0">
+              {{item.title}}
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+    </v-navigation-drawer>
+    <v-toolbar dark class="indigo">
+      <v-toolbar-side-icon @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
+      <v-toolbar-title>
+      <router-link to="/" tag="span" id="title">Where@</router-link>
+      </v-toolbar-title>
+    </v-toolbar>
+  </v-app>
 </template>
 
-
 <script>
+  export default {
 
-import dropdown from './vueDropDown.vue'
-import auth from '../auth/index'
-
-export default{
-  components:{
-    'dropdown': dropdown
-  },
-  data() {
-    return {
-      visAccount:   false,
-      visCreate:    false,
-      visDonation:  false,
-      user: auth.user
-    };
-  },
-  methods: {
-    logout() {
-      console.log('delete');
-      auth.logout()
+    data () {
+      return {
+        sideNav: false,
+        signin: true,
+        menuItems: [
+          { icon: "account_box", title: "Account",
+            itemNS: [
+              { icon: "lock_open", title: "Sign In" },
+              { icon: "face", title: "Register" }
+            ],
+            itemS: [
+              { icon: "account_circle", title: "Account Information" },
+              { icon: "favorite", title: "My @'s'" },
+              { icon: "lock", title: "Sign Out" }
+            ]
+          }
+        ],
+        otherItems: [
+          { icon: "create", title: "Create @" },
+          { icon: "credit_card", title: "Donate" },
+          { icon: "get_app", title: "Invite a friend" }
+        ]
+      }
     }
   }
-}
+
 </script>
 
-
 <style scoped>
-.boxWhereAt{
-    background: #444;
-    padding: 14px 0;
-    margin-bottom: 40px;
-    display: inline-block;
-}
 
-
-a{
-  color: #fff;
-  text-decoration: none;
-
-
-}
-
-.click-here {
-  display: inline-block;
-  padding: 3px;
+#title{
   cursor: pointer;
-  box-sizing: border-box;
 }
 
-.dialog{
-  background:  #679fc2;
-  position: relative;
-  left: -70px;
-  top: inherit;
-}
 
-#AccountList li{
-  list-style-type: none;
-  text-align: left;
-  margin:0 0 10px 0;
-}
-
-#AccountList li a{
-  color: #343434;
-  text-decoration: none;
-  list-style-type: none;
-  text-align: left;
-  margin:0 0 10px 0;
-}
-
-#AccountList li a:hover{
-text-decoration: underline;
-}
 </style>
