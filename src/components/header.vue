@@ -46,11 +46,12 @@
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
-
     </v-navigation-drawer>
     <v-toolbar dark class="indigo">
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav"></v-toolbar-side-icon>
-      <v-toolbar-title>Where@</v-toolbar-title>
+      <v-toolbar-title>
+      <router-link to="/" tag="span" id="title">Where@</router-link>
+      </v-toolbar-title>
     </v-toolbar>
   </v-app>
 </template>
@@ -86,6 +87,11 @@
 
 </script>
 
-<style lang="stylus">
-  @import '../stylus/main'
+<style scoped>
+
+#title{
+  cursor: pointer;
+}
+
+
 </style>
