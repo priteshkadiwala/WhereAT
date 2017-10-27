@@ -61,7 +61,7 @@
     data () {
       return {
         sideNav: false,
-        signin: false,
+        signin: true,
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [
@@ -78,6 +78,7 @@
         otherItems: [
           { icon: "create", title: "Create @", link: "/create" },
           { icon: "create", title: "View @", link: "/at"},
+          { icon: "create", title: "Invite Friend", link: "/invite"},
           { icon: "credit_card", title: "Donate", link: "/donate" },
           { icon: "get_app", title: "Invite a friend", link: "/invite" }
         ]
