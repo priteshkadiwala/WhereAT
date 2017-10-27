@@ -78,7 +78,7 @@
     data () {
       return {
         sideNav: false,
-        signin: true,
+        signin: false,
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [

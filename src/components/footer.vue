@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-footer class="pa-3">
+      <router-link to="/report" tag="span" id="report">Report a problem</router-link>
       <v-spacer></v-spacer>
       <div>© {{ new Date().getFullYear() }}</div>
     </v-footer>
@@ -20,3 +21,10 @@
   }
 
 </script>
+
+<style scoped>
+#report{
+  cursor: pointer;
+}
+
+</style>

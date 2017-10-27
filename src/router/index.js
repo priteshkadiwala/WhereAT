@@ -6,6 +6,7 @@ import invite from '../components/invite.vue';
 import myats from '../components/myats.vue';
 import signin from '../components/signin.vue';
 import signup from '../components/signup.vue';
+import report from '../components/report.vue';
 
 export default [
   {path: '/', component: home},
@@ -15,5 +16,6 @@ export default [
   {path: '/invite', component: invite},
   {path: '/myats', component: myats},
   {path: '/signin', component: signin},
-  {path: '/signup', component: signup}
+  {path: '/signup', component: signup},
+  {path: '/report', component: report}
 ]
