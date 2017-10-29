@@ -32,19 +32,7 @@
               <v-card-text>
                 <v-container>
                   <v-layout row >
-                    <v-flex xs6 order-md2 order-xs1>
-                      <v-text-field
-                        name="input-1"
-                        label="Search for a place"
-                        required
-                      ></v-text-field>
-                      <v-text-field
-                        name="input-7-1"
-                        label="Describe the place"
-                        multi-line
-                        required
-                      ></v-text-field>
-                    </v-flex>
+                    
                   </v-layout>
                 </v-container>
               </v-card-text>
