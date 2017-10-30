@@ -78,7 +78,7 @@
     data () {
       return {
         sideNav: false,
-        signin: false,
+        signin: true,
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [
@@ -95,7 +95,8 @@
         otherItems: [
           { icon: "create", title: "Create @", link: "/create" },
           { icon: "credit_card", title: "Donate", link: "/donate" },
-          { icon: "get_app", title: "Invite a friend", link: "/invite" }
+          { icon: "get_app", title: "Invite a friend", link: "/invite" },
+          { icon: "gavel", title: "Report a friend", link: "/report" }
         ]
       }
     }

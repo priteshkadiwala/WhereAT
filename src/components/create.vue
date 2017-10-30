@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-container grid-list-md class="mt-3">
+    <v-container grid-list-md class="mt-3 mb-3">
       <v-layout>
         <v-flex xs12 sm12>
           <form>
-            <v-card>
+            <v-card class="elevation-10">
               <v-card-media
-                class="black--text"
+                class="black--text elevation-10"
                 height="200px"
                 :src="require('@/assets/newyork.jpg')"
               >

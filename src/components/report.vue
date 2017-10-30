@@ -1,6 +1,41 @@
 <template>
   <div>
-    <h1>This is Report</h1>
+    <v-layout class="mt-3">
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+          <v-toolbar dark color="red">
+            <div class="text-xs-center">
+              <v-toolbar-title class="white--text">Report a problem</v-toolbar-title>
+              </div>
+          </v-toolbar>
+        <v-form v-model="valid" class="ma-3 pa-3">
+          <v-text-field
+            label="Name"
+            v-model="name"
+            required
+          ></v-text-field>
+          <v-text-field
+            label="E-mail"
+            v-model="email"
+            :rules="emailRules"
+            required
+          ></v-text-field>
+          <v-text-field
+            name="input-7-1"
+            label="Describe the issue"
+            multi-line
+            required
+          ></v-text-field>
+          <div class="text-xs-center">
+            <v-btn>
+              submit
+            </v-btn>
+            <v-btn>clear</v-btn>
+          </div>
+        </v-form>
+      </v-card>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
