@@ -78,9 +78,9 @@
         otherItems: [
           { icon: "create", title: "Create @", link: "/create" },
           { icon: "create", title: "View @", link: "/at"},
-          { icon: "create", title: "Invite Friend", link: "/invite"},
           { icon: "credit_card", title: "Donate", link: "/donate" },
-          { icon: "get_app", title: "Invite a friend", link: "/invite" }
+          { icon: "get_app", title: "Invite a friend", link: "/invite" },
+          { icon: "create", title: "Report", link: "/report"},
         ]
       }
     }
