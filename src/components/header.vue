@@ -34,7 +34,7 @@
               <v-list-tile
                 v-for="subItem in item.itemS"
                 v-bind:key="subItem.title"
-                @click=""
+                @click="signout(subItem)"
                 router-link
                 :to="subItem.link"
                 >
@@ -73,12 +73,15 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
+import {bus} from '../main';
+
   export default {
 
     data () {
       return {
         sideNav: false,
-        signin: true,
+        signin: false,
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [
@@ -86,9 +89,9 @@
               { icon: "face", title: "Register", link: "/signup" }
             ],
             itemS: [
-              { icon: "account_circle", title: "Account Information", link: "/acc" },
+              { icon: "account_circle", title: "Account Information", link: "/acc"},
               { icon: "favorite", title: "My @'s", link: "/myats" },
-              { icon: "lock", title: "Sign Out", link: "/" }
+              { icon: "lock", title: "Sign Out", link: "" }
             ]
           }
         ],
@@ -96,8 +99,23 @@
           { icon: "create", title: "Create @", link: "/create" },
           { icon: "credit_card", title: "Donate", link: "/donate" },
           { icon: "get_app", title: "Invite a friend", link: "/invite" },
-          { icon: "gavel", title: "Report a friend", link: "/report" }
+          { icon: "gavel", title: "Report a problem", link: "/report" }
         ]
+      }
+    },
+    created() {
+      bus.$on('signChange', (data) => {
+        this.signin = data;
+      })
+    },
+    methods: {
+      signout(item) {
+        if(item.title === "Sign Out"){
+          firebase.auth().signOut();
+          this.signin = false;
+          this.sideNav = false;
+          this.$router.push("/");
+        }
       }
     }
   }

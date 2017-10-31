@@ -5,7 +5,7 @@
         <v-card>
           <v-card-text>
             <v-container>
-              <form @submit.prevent="onSignup">
+              <form @submit.prevent="submit">
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
@@ -44,11 +44,27 @@
 
 
 <script>
+import * as firebase from 'firebase'
+import {bus} from '../main'
+
   export default {
     data () {
       return {
+        email: '',
+        password: '',
 
       }
+    },
+    methods: {
+      submit() {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function(user){
+               this.$router.push('/');
+               bus.$emit('signChange', true);
+            }.bind(this)).catch(function(error){
+              console.log("caught error: " + error);
+            });
+      }
     }
+
   }
 </script>

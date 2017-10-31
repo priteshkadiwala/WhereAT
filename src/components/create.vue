@@ -36,11 +36,13 @@
                       <v-text-field
                         name="input-1"
                         label="Search for a place"
+                        v-model="at.place"
                         required
                       ></v-text-field>
                       <v-text-field
                         name="input-7-1"
                         label="Describe the place"
+                        v-model="at.describe"
                         multi-line
                         required
                       ></v-text-field>
@@ -83,7 +85,7 @@
                 </v-dialog>
               </div>
               <div class="text-xs-center">
-                <v-btn class="mb-4">submit</v-btn>
+                <v-btn @click="submit" class="mb-4">submit</v-btn>
                 <v-btn class="mb-4">clear</v-btn>
               </div>
             </v-card>
@@ -95,6 +97,7 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
 
 export default {
 
@@ -120,7 +123,20 @@ export default {
         Historical: false,
         Trendy: false
       },
-      dialog: false
+      dialog: false,
+      at: {
+        place: '',
+        describe: ''
+      }
+    }
+  },
+  methods: {
+    submit() {
+      var ref = firebase.database().ref('/ats');
+      var key = ref.push(this.at);
+      key = key.path.pieces_[1];
+      ref.child('/' + key).update({key: key, tags: this.tagSelect});
+      
     }
   }
 }

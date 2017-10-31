@@ -61,13 +61,36 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
 
 export default {
 
   data () {
     return {
-
+      ats: []
     }
+  },
+  created() {
+
+    var email = firebase.auth().currentUser.email;
+    console.log(email);
+    var ref = firebase.database().ref('/profiles');
+    ref.once('value').then(function(snap){
+      snap.forEach(function(prof){
+        if(prof.val().email == email) {
+          console.log(prof.val().key);
+          //this.userKey = prof.val().key;
+          var ref1 = firebase.database().ref('/profiles/' + prof.val().key);
+          ref1.once('value').then(function(snap1){
+            console.log(snap1.val().favorites);
+            var ats = snap1.val().favorites;
+            this.ats = ats;
+            console.log(this.ats);
+          });
+        }
+      });
+    });
+
   }
 }
 

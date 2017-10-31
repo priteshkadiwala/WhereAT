@@ -8,15 +8,14 @@
               <v-toolbar-title class="white--text">Invite a Friend</v-toolbar-title>
               </div>
           </v-toolbar>
-        <v-form v-model="valid" class="ma-3 pa-3">
+        <v-form class="ma-3 pa-3">
           <v-text-field
             label="E-mail"
-            v-model="email"
-            :rules="emailRules"
+            v-model="invite.email"
             required
           ></v-text-field>
           <div class="text-xs-center">
-            <v-btn>
+            <v-btn @click="submit">
               submit
             </v-btn>
             <v-btn>clear</v-btn>
@@ -29,13 +28,23 @@
 </template>
 
 <script>
-
+import * as firebase from 'firebase'
 export default {
 
   data () {
     return {
-
+      invite: {
+        email: ''
+      }
     }
+  },
+  methods: {
+  	submit() {
+  		var ref = firebase.database().ref('/invites');
+  		var key = ref.push(this.invite);
+  		key = key.path.pieces_[1];
+  		ref.child('/' + key).update({key: key});
+  	}
   }
 }
 

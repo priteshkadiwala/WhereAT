@@ -5,7 +5,7 @@
         <v-card>
           <v-card-text>
             <v-container>
-              <form @submit.prevent="onSignup">
+              <form @submit.prevent="submit">
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
+
   export default {
     data () {
       return {
@@ -68,13 +70,26 @@
       }
     },
     methods: {
-      onSignup () {
-        console.log({
-          email: this.email,
-          password: this.password,
-          confirmPassword: this.confirmPassword
-        });
-      }
-    }
+     submit() {
+           if(this.password === this.confirmPassword) {
+             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function(user){
+               var ref = firebase.database().ref('/profiles');
+               var profile = {
+                 email: user.email
+
+               };
+               var key = ref.push(profile);
+               key = key.path.pieces_[1];
+               ref.child('/' + key).update({key: key}).then(function(profile){
+                 console.log(profile);
+               });
+             }).catch(function(error){
+               console.log(error.message);
+             });
+           } else {
+             console.log("Passwords do not match");
+           }
+         }
+   }
   }
 </script>
