@@ -4,7 +4,13 @@
 			<v-layout row wrap>
 				<v-flex xs12>
 					<v-form>
-						<vue-google-autocomplete id="map" classname="form-control" placeholder="Enter address" v-on:placechanged="getAddressData"></vue-google-autocomplete><br>
+							<vue-google-autocomplete 
+							id="map" 
+							classname="form-control" 
+							placeho9lder="Enter address"
+							types="(regions)"
+							 v-on:placechanged="getAddressData"
+							></vue-google-autocomplete><br>
 						<v-text-field
 							label="Name"
 							v-model="newObj.name"
@@ -63,6 +69,7 @@ export default {
   },
   methods: {
   	getAddressData (addressData, placeResultData) {
+  		console.log(addressData);
         this.newObj.lat = addressData.latitude;
         this.newObj.long = addressData.longitude;
       },
@@ -72,7 +79,10 @@ export default {
        	this.notSubmit = false;
         
   	},
-}
+	},
+	components: {
+		VueGoogleAutocomplete
+	}
 }	
 
 </script>
