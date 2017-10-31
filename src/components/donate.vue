@@ -1,12 +1,13 @@
 <template>
 	<div>
-		<PayPal
-			amount="0.01"
-			currency="USD"
-			:dev="true"
-			:client='credentials'
-			invoiceNumber="201701011000"
-			></PayPal>
+		<div>
+			<PayPal
+				amount="1.00"
+				currency="USD"
+				:dev="true"
+				:client='credentials'
+				></PayPal>
+		</div>
 	</div>
 </template>
 
