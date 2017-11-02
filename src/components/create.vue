@@ -3,14 +3,14 @@
 		<v-container v-show="notSubmit === true">
 			<v-layout row wrap>
 				<v-flex xs12>
-					<v-form>
+					
 							<vue-google-autocomplete 
 							id="map" 
 							classname="form-control" 
 							placeho9lder="Enter address"
 							types="(regions)"
 							 v-on:placechanged="getAddressData"
-							></vue-google-autocomplete><br>
+							></vue-google-autocomplete>
 						<v-text-field
 							label="Name"
 							v-model="newObj.name"
@@ -32,7 +32,7 @@
 							required
 						></v-text-field>
 						<v-btn v-on:click="postNewAt">Submit</v-btn>
-					</v-form>
+					
 				</v-flex>
 			</v-layout>
 		</v-container>
