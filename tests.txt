@@ -46,13 +46,13 @@ User Stories to test:
 		1. go to report page
 		2. enter information
 		3. click submit
-		4. check e-mail for message about report information
+		4. check e-mail and message is in database
 
 8.	Send an invite to a friend:
 		1. go to invite page
 		2. enter friend's email
 		3. click submit
-		4. verify message has been sent to entered email
+		4. verify message is in database
 
 9.	delete locations, accounts, etc
 		1. go to manage tab
