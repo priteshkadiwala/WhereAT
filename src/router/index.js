@@ -7,6 +7,10 @@ import myats from '../components/myats.vue';
 import signin from '../components/signin.vue';
 import signup from '../components/signup.vue';
 import report from '../components/report.vue';
+import view from '../components/viewAt.vue';
+import popular from '../components/popular.vue';
+import deletes from '../components/delete.vue';
+import aduser from '../components/aduser.vue';
 
 export default [
   {path: '/', component: home},
@@ -17,5 +21,9 @@ export default [
   {path: '/myats', component: myats},
   {path: '/signin', component: signin},
   {path: '/signup', component: signup},
-  {path: '/report', component: report}
+  {path: '/report', component: report},
+  {path: '/view/:id', component: view},
+  {path: '/popular', component: popular},
+  {path: '/delete', component: deletes},
+  {path: '/aduser', component: aduser}
 ]

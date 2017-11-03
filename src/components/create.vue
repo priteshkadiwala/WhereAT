@@ -8,7 +8,7 @@
               <v-card-media
                 class="black--text elevation-10"
                 height="200px"
-                :src="require('@/assets/newyork.jpg')"
+                :src="imageUrl"
               >
                 <v-container fill-height fluid>
                   <v-layout fill-height>
@@ -24,27 +24,48 @@
                   dark
                   class="ma-4"
                   justify-center
+                  raised
+                  @click="onPickFile"
                   >
                   Upload
                   <v-icon right dark>cloud_upload</v-icon>
                 </v-btn>
+                <input
+                type="file"
+                style="display: none"
+                ref="fileInput"
+                accept="image/*"
+                @change="onFilePicked"
+                />
               </div>
               <v-card-text>
                 <v-container>
                   <v-layout row >
                     <v-flex xs6 order-md2 order-xs1>
-                      <v-text-field
+                      <!--<v-text-field
                         name="input-1"
                         label="Search for a place"
                         v-model="at.place"
                         required
-                      ></v-text-field>
+                      >
+
+
+                    </v-text-field>-->
+                    <vue-google-autocomplete
+                          id="map"
+                          placeholder="Search for the place"
+                          types="(regions)"
+                          v-on:placechanged="getAddressData"
+
+                    ></vue-google-autocomplete>
+
                       <v-text-field
                         name="input-7-1"
                         label="Describe the place"
                         v-model="at.describe"
                         multi-line
                         required
+                        class="mt-3"
                       ></v-text-field>
                     </v-flex>
                   </v-layout>
@@ -97,37 +118,47 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
+import * as firebase from 'firebase';
+
+import VueGoogleAutocomplete from 'vue-google-autocomplete';
 
 export default {
 
   data () {
     return {
       tagSelect: {
-        Food: false,
         Casual: false,
-        Upscale: false,
-        Recreational: false,
-        Quiet: false,
-        Popular: false,
-        FamilyFriendly: false,
-        Expensive: false,
         Cheap: false,
-        Theatre: false,
         Cultural: false,
-        Sports: false,
-        Nature: false,
-        Exciting: false,
         Event: false,
-        Unique: false,
+        Exciting: false,
+        Expensive: false,
+        FamilyFriendly: false,
+        Food: false,
         Historical: false,
-        Trendy: false
+        Nature: false,
+        Popular: false,
+        Quiet: false,
+        Recreational: false,
+        Sports: false,
+        Theatre: false,
+        Trendy: false,
+        Unique: false,
+        Upscale: false
       },
       dialog: false,
       at: {
-        place: '',
-        describe: ''
-      }
+        place: {
+          lat: '',
+          long: '',
+          name: ''
+        },
+        votes: 0,
+        describe: '',
+        reviews: []
+      },
+      image: null,
+      imageUrl: ''
     }
   },
   methods: {
@@ -135,10 +166,50 @@ export default {
       var ref = firebase.database().ref('/ats');
       var key = ref.push(this.at);
       key = key.path.pieces_[1];
-      ref.child('/' + key).update({key: key, tags: this.tagSelect});
-      
+      ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
+      //upload picture
+        var filename = this.image.name;
+        var ext = filename.slice(filename.lastIndexOf('.'));
+        var temp = firebase.storage().ref('/ats/' + key + '.' + ext);
+        temp.put(this.image).then((snap)=>{
+          console.log(snap);
+          this.imageUrl = snap.downloadURL;
+        }).then(()=>{
+        console.log(this.imageUrl);
+
+        ref = firebase.database().ref("/ats/" + key);
+        ref.update({imageUrl: this.imageUrl});
+      });
+      });
+    },
+    onPickFile(){
+      this.$refs.fileInput.click();
+    },
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      if (filename.lastIndexOf('.') <= 0){
+        return alert('Please add a valid file!');
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result;
+      })
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
+    },
+    getAddressData (addressData, placeResultData) {
+
+        console.log(addressData);
+        this.at.place.lat = addressData.latitude;
+        this.at.place.long = addressData.longitude;
+        this.at.place.name = addressData.locality;
+        console.log(this.at.place);
     }
-  }
+  },
+	components: {
+		VueGoogleAutocomplete
+	}
 }
 
 </script>

@@ -99,7 +99,10 @@ import {bus} from '../main';
           { icon: "create", title: "Create @", link: "/create" },
           { icon: "credit_card", title: "Donate", link: "/donate" },
           { icon: "get_app", title: "Invite a friend", link: "/invite" },
-          { icon: "gavel", title: "Report a problem", link: "/report" }
+          { icon: "gavel", title: "Report a problem", link: "/report" },
+          { icon: "stars", title: "Popular @'s", link: "/popular" },
+          { icon: "delete_forever", title: "Delete @'s", link: "/delete" },
+          { icon: "delete_forever", title: "Delete Users", link: "/aduser" }
         ]
       }
     },

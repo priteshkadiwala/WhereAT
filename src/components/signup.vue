@@ -20,6 +20,36 @@
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
+                      name="UserName"
+                      label="User Name"
+                      id="userN"
+                      v-model="userN"
+                      required></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex xs12>
+                    <v-text-field
+                      name="FirstName"
+                      label="First Name"
+                      id="first"
+                      v-model="first"
+                      required></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex xs12>
+                    <v-text-field
+                      name="LastName"
+                      label="Last Name"
+                      id="last"
+                      v-model="last"
+                      required></v-text-field>
+                  </v-flex>
+                </v-layout>
+                <v-layout row>
+                  <v-flex xs12>
+                    <v-text-field
                       name="password"
                       label="Password"
                       id="password"
@@ -61,7 +91,10 @@ import * as firebase from 'firebase'
       return {
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        first: '',
+        last: '',
+        userN: ''
       }
     },
     computed: {
@@ -72,11 +105,15 @@ import * as firebase from 'firebase'
     methods: {
      submit() {
            if(this.password === this.confirmPassword) {
-             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function(user){
+             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) =>{
                var ref = firebase.database().ref('/profiles');
                var profile = {
-                 email: user.email
-
+                 email: user.email,
+                 first: this.first,
+                 last: this.last,
+                 username: this.userN,
+                 comments: 0,
+                 votes: 0
                };
                var key = ref.push(profile);
                key = key.path.pieces_[1];
