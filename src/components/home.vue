@@ -17,6 +17,7 @@
     </v-toolbar>
 
     <gmap-map
+      ref="map"
       id="gmap"
       :center="center"
       :zoom="7"
@@ -31,7 +32,7 @@
       ></gmap-marker>
     </gmap-map>
 
-
+    <v-btn @click="calculateAndDisplayRoute">directions</v-btn>
 
   </div>
 </template>
@@ -56,7 +57,8 @@ export default {
     return {
       center: {lat: 10.0, lng: 10.0},
       exists: false,
-      key: ''
+      key: '',
+      destination: {lat: 10.0, lng:10.0}
       //position: {lat: 10.0, lng: 10.0}
     }
   },
@@ -71,6 +73,8 @@ export default {
         var ref = firebase.database().ref('/ats');
         var vm = this;
         var check = false;
+        this.destination.lat = 39.768377
+        this.destination.lng = -86.158042
 
         ref.once('value').then(snap=> {
           snap.forEach(at=>{
@@ -102,7 +106,23 @@ export default {
     clicked(){
 
       this.$router.push('/view/' + this.key);
-    }
+    },
+    calculateAndDisplayRoute() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        directionsDisplay.setMap(this.$refs.map.$mapObject);
+        directionsService.route({
+          origin: this.center,
+          destination: this.destination,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
   },
 	components: {
 		VueGoogleAutocomplete

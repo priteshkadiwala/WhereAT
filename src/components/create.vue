@@ -51,14 +51,12 @@
 
 
                     </v-text-field>-->
-                    <vue-google-autocomplete
+                    <vuetify-google-autocomplete
                           id="map"
                           placeholder="Search for the place"
-                          types="(regions)"
                           v-on:placechanged="getAddressData"
-
-                    ></vue-google-autocomplete>
-
+                    ></vuetify-google-autocomplete>
+                      <v-btn @click="geolocation">Geolocation</v-btn>
                       <v-text-field
                         name="input-7-1"
                         label="Describe the place"
@@ -120,7 +118,7 @@
 <script>
 import * as firebase from 'firebase';
 
-import VueGoogleAutocomplete from 'vue-google-autocomplete';
+import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete';
 
 export default {
 
@@ -158,9 +156,16 @@ export default {
         reviews: []
       },
       image: null,
-      imageUrl: ''
+      imageUrl: '',
+      currentLocation: {
+        lat: "",
+        lng: ""
+      }
     }
   },
+  //mounted: function() {
+  // this.geolocation();
+  //},
   methods: {
     submit() {
       var ref = firebase.database().ref('/ats');
@@ -205,10 +210,18 @@ export default {
         this.at.place.long = addressData.longitude;
         this.at.place.name = addressData.locality;
         console.log(this.at.place);
+    },
+    geolocation : function() {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+          this.currentLocation.lat = position.coords.latitude,
+          this.currentLocation.lng = position.coords.longitude
+      });
+      console.log(this.currentLocation);
     }
   },
 	components: {
-		VueGoogleAutocomplete
+		VuetifyGoogleAutocomplete
 	}
 }
 
