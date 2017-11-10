@@ -2,7 +2,9 @@
   <v-app light>
       <app-header></app-header>
       <main>
-        <router-view></router-view>
+        <v-content>
+          <router-view></router-view>
+        </v-content>
       </main>
       <app-footer></app-footer>
   </v-app>

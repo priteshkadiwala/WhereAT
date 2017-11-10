@@ -1,32 +1,66 @@
 <template>
-	<v-container grid-list-xs align-center>
-		<v-layout column>
-			<v-flex xs12 class="text-xs-center">
-					<h1>My @'s</h1>
-			</v-flex>
-			<v-flex xs12 v-for="i in AtList">
-				<v-card class="text-xs-center">
-					<v-card-title primary-title>{{i.name}}</v-card-title>
-					<v-card-text>{{i.description}}</v-card-text>
-				</v-card>
-			</v-flex>
-		</v-layout>
-	</v-container>
+  <div>
+    <v-card class="elevation-10 ma-4" color="blue-grey lighten-4">
+        <v-toolbar dark color="blue-grey darken-4">
+          <div class="text-xs-center">
+            <v-toolbar-title class="white--text">My Favorite @'s</v-toolbar-title>
+            </div>
+        </v-toolbar>
+        <v-layout row wrap class="ma-4" >
+          <v-flex xs4 class="pa-4" v-for="(at, index) in ats">
+            <v-card class="elevation-10">
+              <v-card-media :src="at.imageUrl" height="200px">
+              </v-card-media>
+              <v-card-title primary-title>
+                <div>
+                  <h3 class="headline mb-0">{{at.place.name}}</h3>
+                  <div>{{at.describe}}</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-card>
+  </div>
 </template>
 
 <script>
+import * as firebase from 'firebase'
 
 export default {
 
   data () {
     return {
-    	AtList: [
-    		{name: "Place 1", description: "sdasdasd"},
-    		{name: "PLace 2", description: "sdasdasda"},
-    		{name: "PLace 3", description: "asdasdadd"},
-    		{name: "Place 4", description: "asdadad"},
-		]
+      ats: [],
+      header: ''
     }
+  },
+  created() {
+
+    var email = firebase.auth().currentUser.email;
+    console.log(email);
+    var ref = firebase.database().ref('/profiles');
+    ref.once('value').then((snap)=>{
+      snap.forEach((prof)=>{
+        if(prof.val().email == email) {
+          console.log(prof.val().key);
+          //this.userKey = prof.val().key;
+          var ref1 = firebase.database().ref('/profiles/' + prof.val().key);
+          var ats = [];
+          ref1.once('value').then((snap1)=>{
+            snap1.val().favorites.forEach((fav)=>{
+              var ref3 = firebase.database().ref('/ats/' + fav);
+              ref3.once('value').then((at) => {
+                ats.push(at.val());
+                this.ats = ats;
+                console.log(this.ats);
+              });
+            });
+          });
+        }
+      });
+    });
+
   }
 }
 

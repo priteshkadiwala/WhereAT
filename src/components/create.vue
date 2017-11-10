@@ -1,88 +1,215 @@
 <template>
-	<div>
-		<v-container v-show="notSubmit === true">
-			<v-layout row wrap>
-				<v-flex xs12>
-					
-							<vue-google-autocomplete 
-							id="map" 
-							classname="form-control" 
-							placeho9lder="Enter address"
-							types="(regions)"
-							 v-on:placechanged="getAddressData"
-							></vue-google-autocomplete>
-						<v-text-field
-							label="Name"
-							v-model="newObj.name"
-							required
-						></v-text-field>
-						<v-text-field
-							label="Description"
-							v-model="newObj.description"
-							required
-						></v-text-field>
-						<v-text-field
-							label="Hours"
-							v-model="newObj.hours"
-							required
-						></v-text-field>
-						<v-text-field
-							label="Tags"
-							v-model="newObj.temptags"
-							required
-						></v-text-field>
-						<v-btn v-on:click="postNewAt">Submit</v-btn>
-					
-				</v-flex>
-			</v-layout>
-		</v-container>
-		<v-container v-show="notSubmit === false">
-			<v-layout row wrap>
-				<v-flex xs12>
-					<h2>Thanks for Submitting</h2>
-				</v-flex>
-			</v-layout>
-		</v-container>
-	</div>
+  <div>
+    <v-container grid-list-md class="mt-3 mb-3">
+      <v-layout>
+        <v-flex xs12 sm12>
+          <form>
+            <v-card class="elevation-10">
+              <v-card-media
+                class="black--text elevation-10"
+                height="200px"
+                :src="imageUrl"
+              >
+                <v-container fill-height fluid>
+                  <v-layout fill-height>
+                    <v-flex xs12 align-end flexbox>
+                      <span class="headline">Create an @</span>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-media>
+              <div class="text-xs-center">
+                <v-btn
+                  color="blue-grey"
+                  dark
+                  class="ma-4"
+                  justify-center
+                  raised
+                  @click="onPickFile"
+                  >
+                  Upload
+                  <v-icon right dark>cloud_upload</v-icon>
+                </v-btn>
+                <input
+                type="file"
+                style="display: none"
+                ref="fileInput"
+                accept="image/*"
+                @change="onFilePicked"
+                />
+              </div>
+              <v-card-text>
+                <v-container>
+                  <v-layout row >
+                    <v-flex xs6 order-md2 order-xs1>
+                      <!--<v-text-field
+                        name="input-1"
+                        label="Search for a place"
+                        v-model="at.place"
+                        required
+                      >
+
+
+                    </v-text-field>-->
+                    <vue-google-autocomplete
+                          id="map"
+                          placeholder="Search for the place"
+                          types="(regions)"
+                          v-on:placechanged="getAddressData"
+
+                    ></vue-google-autocomplete>
+
+                      <v-text-field
+                        name="input-7-1"
+                        label="Describe the place"
+                        v-model="at.describe"
+                        multi-line
+                        required
+                        class="mt-3"
+                      ></v-text-field>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card-text>
+              <div class="text-xs-center">
+                <v-dialog class="mb-4" v-model="dialog" scrollable>
+                  <v-btn color="primary" dark slot="activator">Tags</v-btn>
+                  <v-card>
+                    <v-card-title>Select Tags</v-card-title>
+                    <v-divider></v-divider>
+                    <v-card-text style="height: 300px;">
+                        <v-checkbox label="Food" v-model="tagSelect.Food"></v-checkbox>
+                        <v-checkbox label="Casual" v-model="tagSelect.Casual"></v-checkbox>
+                        <v-checkbox label="Upscale" v-model="tagSelect.Upscale"></v-checkbox>
+                        <v-checkbox label="Recreational" v-model="tagSelect.Recreational"></v-checkbox>
+                        <v-checkbox label="Quiet" v-model="tagSelect.Quiet"></v-checkbox>
+                        <v-checkbox label="Popular" v-model="tagSelect.Popular"></v-checkbox>
+                        <v-checkbox label="Family Friendly" v-model="tagSelect.FamilyFriendly"></v-checkbox>
+                        <v-checkbox label="Expensive" v-model="tagSelect.Expensive"></v-checkbox>
+                        <v-checkbox label="Cheap" v-model="tagSelect.Cheap"></v-checkbox>
+                        <v-checkbox label="Theatre" v-model="tagSelect.Theatre"></v-checkbox>
+                        <v-checkbox label="Cultural" v-model="tagSelect.Cultural"></v-checkbox>
+                        <v-checkbox label="Sports" v-model="tagSelect.Sports"></v-checkbox>
+                        <v-checkbox label="Nature" v-model="tagSelect.Nature"></v-checkbox>
+                        <v-checkbox label="Exciting" v-model="tagSelect.Exciting"></v-checkbox>
+                        <v-checkbox label="Event" v-model="tagSelect.Event"></v-checkbox>
+                        <v-checkbox label="Unique" v-model="tagSelect.Unique"></v-checkbox>
+                        <v-checkbox label="Historical" v-model="tagSelect.Historical"></v-checkbox>
+                        <v-checkbox label="Trendy" v-model="tagSelect.Trendy"></v-checkbox>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                    <v-card-actions>
+                      <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+                      <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </div>
+              <div class="text-xs-center">
+                <v-btn @click="submit" class="mb-4">submit</v-btn>
+                <v-btn class="mb-4">clear</v-btn>
+              </div>
+            </v-card>
+          </form>
+        </v-flex>
+      </v-layout>
+  </v-container>
+  </div>
 </template>
 
 <script>
+import * as firebase from 'firebase';
+
 import VueGoogleAutocomplete from 'vue-google-autocomplete';
+
 export default {
-	
+
   data () {
     return {
-    	newObj: {
-        name: "",
-        description: "",
-        tags : [],
-        temptags: "",
-        hours: "",
-        lat: "",
-        long: "",
-        votes: 0
+      tagSelect: {
+        Casual: false,
+        Cheap: false,
+        Cultural: false,
+        Event: false,
+        Exciting: false,
+        Expensive: false,
+        FamilyFriendly: false,
+        Food: false,
+        Historical: false,
+        Nature: false,
+        Popular: false,
+        Quiet: false,
+        Recreational: false,
+        Sports: false,
+        Theatre: false,
+        Trendy: false,
+        Unique: false,
+        Upscale: false
       },
-      allTags: [],
-      notSubmit: true,
-      error: ''
+      dialog: false,
+      at: {
+        place: {
+          lat: '',
+          long: '',
+          name: ''
+        },
+        votes: 0,
+        describe: '',
+        reviews: []
+      },
+      image: null,
+      imageUrl: ''
     }
   },
   methods: {
-  	getAddressData (addressData, placeResultData) {
-  		console.log(addressData);
-        this.newObj.lat = addressData.latitude;
-        this.newObj.long = addressData.longitude;
-      },
-    postNewAt: function() {
-    	var temp = this.newObj.temptags.split(',');
-       	this.newObj.tags = temp;
-       	this.notSubmit = false;
-        
-  	},
-	},
+    submit() {
+      var ref = firebase.database().ref('/ats');
+      var key = ref.push(this.at);
+      key = key.path.pieces_[1];
+      ref.child('/' + key).update({key: key, tags: this.tagSelect}).then(()=>{
+      //upload picture
+        var filename = this.image.name;
+        var ext = filename.slice(filename.lastIndexOf('.'));
+        var temp = firebase.storage().ref('/ats/' + key + '.' + ext);
+        temp.put(this.image).then((snap)=>{
+          console.log(snap);
+          this.imageUrl = snap.downloadURL;
+        }).then(()=>{
+        console.log(this.imageUrl);
+
+        ref = firebase.database().ref("/ats/" + key);
+        ref.update({imageUrl: this.imageUrl});
+      });
+      });
+    },
+    onPickFile(){
+      this.$refs.fileInput.click();
+    },
+    onFilePicked(event) {
+      const files = event.target.files;
+      let filename = files[0].name;
+      if (filename.lastIndexOf('.') <= 0){
+        return alert('Please add a valid file!');
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result;
+      })
+      fileReader.readAsDataURL(files[0]);
+      this.image = files[0];
+    },
+    getAddressData (addressData, placeResultData) {
+
+        console.log(addressData);
+        this.at.place.lat = addressData.latitude;
+        this.at.place.long = addressData.longitude;
+        this.at.place.name = addressData.locality;
+        console.log(this.at.place);
+    }
+  },
 	components: {
 		VueGoogleAutocomplete
 	}
-}	
+}
 
 </script>

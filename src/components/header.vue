@@ -15,36 +15,52 @@
               </v-list-tile-action>
             </v-list-tile>
             <div v-if="!signin">
-              <v-list-tile v-for="subItem in item.itemNS" v-bind:key="subItem.title" @click="">
-                <router-link :to="subItem.link" tag="span">
-                  <v-list-tile-content>
-                    <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
-                  </v-list-tile-content>
-                </router-link>
+              <v-list-tile
+                v-for="subItem in item.itemNS"
+                v-bind:key="subItem.title"
+                @click=""
+                router-link
+                :to="subItem.link"
+              >
+                <v-list-tile-action>
+                  <v-icon>{{subItem.icon}}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+                </v-list-tile-content>
               </v-list-tile>
             </div>
             <div v-if="signin">
-              <v-list-tile v-for="subItem in item.itemS" v-bind:key="subItem.title" @click="">
-                <router-link :to="subItem.link" tag="span">
+              <v-list-tile
+                v-for="subItem in item.itemS"
+                v-bind:key="subItem.title"
+                @click="signout(subItem)"
+                router-link
+                :to="subItem.link"
+                >
+                  <v-list-tile-action>
+                    <v-icon>{{subItem.icon}}</v-icon>
+                  </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
                   </v-list-tile-content>
-                </router-link>
               </v-list-tile>
             </div>
           </v-list-group>
         </v-list>
         <v-list v-for="item in otherItems" :key="item.title">
-          <router-link :to="item.link" tag="span">
-            <v-list-tile @click="">
+            <v-list-tile
+              @click=""
+              router-link
+              :to="item.link"
+              >
               <v-list-tile-action>
-                <v-icon class="ma-1">{{item.icon}}</v-icon>
+                <v-icon>{{item.icon}}</v-icon>
               </v-list-tile-action>
-              <v-list-tile-content class="ma-0">
+              <v-list-tile-content>
                 {{item.title}}
               </v-list-tile-content>
             </v-list-tile>
-          </router-link>
         </v-list>
     </v-navigation-drawer>
     <v-toolbar dark class="indigo">
@@ -57,38 +73,63 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
+import {bus} from '../main';
+
   export default {
+
     data () {
       return {
         sideNav: false,
-        signin: true,
+        signin: false,
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [
-              { title: "Sign In", link: "/signin" },
-              { title: "Register", link: "/signup" }
+              { icon: "lock_open", title: "Sign In", link: "/signin" },
+              { icon: "face", title: "Register", link: "/signup" }
             ],
             itemS: [
-              { title: "Account Information", link: "/acc" },
-              { title: "My @'s", link: "/myats" },
-              { title: "Sign Out", link: "/" }
+              { icon: "account_circle", title: "Account Information", link: "/acc"},
+              { icon: "favorite", title: "My @'s", link: "/myats" },
+              { icon: "lock", title: "Sign Out", link: "" }
             ]
           }
         ],
         otherItems: [
           { icon: "create", title: "Create @", link: "/create" },
-          { icon: "create", title: "View @", link: "/at"},
           { icon: "credit_card", title: "Donate", link: "/donate" },
           { icon: "get_app", title: "Invite a friend", link: "/invite" },
-          { icon: "create", title: "Report", link: "/report"},
+          { icon: "gavel", title: "Report a problem", link: "/report" },
+          { icon: "stars", title: "Popular @'s", link: "/popular" },
+          { icon: "delete_forever", title: "Delete @'s", link: "/delete" },
+          { icon: "delete_forever", title: "Delete Users", link: "/aduser" }
         ]
+      }
+    },
+    created() {
+      bus.$on('signChange', (data) => {
+        this.signin = data;
+      })
+    },
+    methods: {
+      signout(item) {
+        if(item.title === "Sign Out"){
+          firebase.auth().signOut();
+          this.signin = false;
+          this.sideNav = false;
+          this.$router.push("/");
+        }
       }
     }
   }
+
 </script>
 
 <style scoped>
+
 #title{
   cursor: pointer;
 }
+
+
 </style>
