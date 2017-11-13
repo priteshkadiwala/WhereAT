@@ -7,15 +7,34 @@
       class="ma-5"
       id="float"
     >
-        <vue-google-autocomplete
+        <vuetify-google-autocomplete
               id="map"
               placeholder="Enter address"
               types="(regions)"
               v-on:placechanged="getAddressData"
-        ></vue-google-autocomplete>
+        ></vuetify-google-autocomplete>
+        <v-btn @click="locationSearch"><v-icon>location_searching</v-icon></v-btn>
 
     </v-toolbar>
+    <br v-show="firstBoxFull==true">
+    <br v-show="firstBoxFull==true">
+    <br v-show="firstBoxFull==true">
+    <v-toolbar v-show="firstBoxFull==true"
+      color="white"
+      floating
+      dense
+      class="ma-5"
+      id="float"
+    >
+        <vuetify-google-autocomplete
+              id="map"
+              placeholder="Enter address"
+              types="(regions)"
+              v-on:placechanged="getAddressData"
+        ></vuetify-google-autocomplete>
+        <v-btn @click="locationSearch"><v-icon>location_searching</v-icon></v-btn>
 
+    </v-toolbar>
     <gmap-map
       ref="map"
       id="gmap"
@@ -25,7 +44,7 @@
     >
 
       <gmap-marker
-        :position="position"
+        :position="position1"
         :clickable="true"
         :animation="2"
         @click="clicked"
@@ -40,7 +59,7 @@
 <script>
 import * as firebase from 'firebase';
 import * as VueGoogleMaps from 'vue2-google-maps';
-import VueGoogleAutocomplete from 'vue-google-autocomplete';
+import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete';
 import Vue from 'vue';
 import {bus} from '../main'
 
@@ -58,8 +77,9 @@ export default {
       center: {lat: 10.0, lng: 10.0},
       exists: false,
       key: '',
-      destination: {lat: 10.0, lng:10.0}
-      //position: {lat: 10.0, lng: 10.0}
+      destination: {lat: 10.0, lng:10.0},
+      position1: {lat: 10.0, lng:10.0},
+      firstBoxFull: false
     }
   },
   watch: {
@@ -69,20 +89,58 @@ export default {
     }
   },
   methods: {
-    getAddressData (addressData, placeResultData) {
+    searchLoc(searchObject) {
         var ref = firebase.database().ref('/ats');
         var vm = this;
         var check = false;
-        this.destination.lat = 39.768377
-        this.destination.lng = -86.158042
-
         ref.once('value').then(snap=> {
           snap.forEach(at=>{
 
+            //console.log(addressData);
+            console.log(at.val().place.lat == searchObject.lat && at.val().place.long == searchObject.lng);
+            if(at.val().place.lat == searchObject.lat && at.val().place.long == searchObject.lng){
+              this.position1 = {lat: searchObject.lat, lng: searchObject.lng};
+              this.center = {lat: searchObject.lat, lng: searchObject.lng};
+              check = true;
+              this.firstBoxFull = true;
+              this.key = at.key
+            }
+
+
+          });
+          //
+          if(!check) {
+
+
+              this.$router.push('/create');
+          }
+
+        });
+    },
+    getAddressData (addressData, placeResultData) {
+        this.position1.lat = addressData.latitude;
+        this.position1.lng = addressData.longitude;
+        if (this.firstBoxFull) {
+          this.destination. lat = addressData.latitude;
+          this.destination.lng = addressData.longitude;
+          this.calculateAndDisplayRoute();
+          this.firstBoxFull = false;
+          return;
+        }
+        this.searchLoc(this.position1);
+        /*var ref = firebase.database().ref('/ats');
+        var vm = this;
+        var check = false;
+        this.destination.lat = 39.768377;
+        this.destination.lng = -86.158042;
+
+        ref.once('value').then(snap=> {
+          snap.forEach(at=>{
+            
             console.log(addressData);
             console.log(at.val().place.lat == addressData.latitude && at.val().place.long == addressData.longitude);
             if(at.val().place.lat == addressData.latitude && at.val().place.long == addressData.longitude){
-              this.position = {lat: addressData.latitude, lng: addressData.longitude};
+              this.position1 = {lat: addressData.latitude, lng: addressData.longitude};
               this.center = {lat: addressData.latitude, lng: addressData.longitude};
               check = true;
               this.key = at.key
@@ -101,8 +159,9 @@ export default {
         //console.log(this.exists);
 
 
-        //console.log(this.markers);
+        //console.log(this.markers);*/
     },
+    
     clicked(){
 
       this.$router.push('/view/' + this.key);
@@ -122,10 +181,20 @@ export default {
             window.alert('Directions request failed due to ' + status);
           }
         });
-      }
+      },
+      locationSearch : function() {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+          this.position1.lat = position.coords.latitude;
+          this.position1.lng = position.coords.longitude;
+        
+      });
+      this.searchLoc(this.position1);
+      //console.log(this.currentLocation);
+    }
   },
 	components: {
-		VueGoogleAutocomplete
+		VuetifyGoogleAutocomplete
 	}
 }
 
