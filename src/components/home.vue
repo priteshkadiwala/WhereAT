@@ -9,32 +9,22 @@
     >
         <vuetify-google-autocomplete
               id="map"
-              placeholder="Enter address"
+              placeholder="From"
               types="(regions)"
               v-on:placechanged="getAddressData"
         ></vuetify-google-autocomplete>
-        <v-btn @click="locationSearch"><v-icon>location_searching</v-icon></v-btn>
 
-    </v-toolbar>
-    <br v-show="firstBoxFull==true">
-    <br v-show="firstBoxFull==true">
-    <br v-show="firstBoxFull==true">
-    <v-toolbar v-show="firstBoxFull==true"
-      color="white"
-      floating
-      dense
-      class="ma-5"
-      id="float"
-    >
         <vuetify-google-autocomplete
-              id="map"
-              placeholder="Enter address"
+              id="map1"
+              placeholder="To"
               types="(regions)"
               v-on:placechanged="getAddressData"
+              class="ml-4"
         ></vuetify-google-autocomplete>
-        <v-btn @click="locationSearch"><v-icon>location_searching</v-icon></v-btn>
+        <v-btn @click.prevent="locationSearch"><v-icon>location_searching</v-icon></v-btn>
 
     </v-toolbar>
+   
     <gmap-map
       ref="map"
       id="gmap"
@@ -44,14 +34,14 @@
     >
 
       <gmap-marker
-        :position="position1"
+        :position="position"
         :clickable="true"
         :animation="2"
         @click="clicked"
       ></gmap-marker>
     </gmap-map>
 
-    <v-btn @click="calculateAndDisplayRoute">directions</v-btn>
+    
 
   </div>
 </template>
@@ -79,7 +69,8 @@ export default {
       key: '',
       destination: {lat: 10.0, lng:10.0},
       position1: {lat: 10.0, lng:10.0},
-      firstBoxFull: false
+      firstBoxFull: false,
+      position: {lat: 10.0, lng:10.0}
     }
   },
   watch: {
@@ -99,9 +90,10 @@ export default {
             //console.log(addressData);
             console.log(at.val().place.lat == searchObject.lat && at.val().place.long == searchObject.lng);
             if(at.val().place.lat == searchObject.lat && at.val().place.long == searchObject.lng){
-              this.position1 = {lat: searchObject.lat, lng: searchObject.lng};
+              this.position = {lat: searchObject.lat, lng: searchObject.lng};
               this.center = {lat: searchObject.lat, lng: searchObject.lng};
               check = true;
+
               this.firstBoxFull = true;
               this.key = at.key
             }
@@ -184,12 +176,17 @@ export default {
       },
       locationSearch : function() {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-          this.position1.lat = position.coords.latitude;
-          this.position1.lng = position.coords.longitude;
+        
+          this.position = {lat: position.coords.latitude, lng: position.coords.longitude};
+          this.center = {lat: position.coords.latitude, lng: position.coords.longitude};
+          Vue.$gmapDefaultResizeBus.$emit('resize');
+
         
       });
-      this.searchLoc(this.position1);
+      //console.log(this.position1);
+      
+
+      //this.searchLoc(this.position1);
       //console.log(this.currentLocation);
     }
   },
@@ -204,6 +201,14 @@ export default {
 #float{
   position: absolute;
   z-index: 2;
+  padding: 10px 0 10px 0;
+}
+
+#float1{
+  position: absolute;
+  z-index: 2;
+  padding: 10px 0 10px 0;
+
 }
 
 #gmap{
