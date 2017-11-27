@@ -78,6 +78,9 @@
             </v-container>
           </v-card-text>
         </v-card>
+        <v-btn v-on:click="google">Google Sign in</v-btn>
+        <v-btn v-on:click="facebook">Facebook Sign in</v-btn>
+        <v-btn v-on:click="twitter">twitter Sign in</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -126,7 +129,97 @@ import * as firebase from 'firebase'
            } else {
              console.log("Passwords do not match");
            }
-         }
+         },
+
+      google() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(user);
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            first: user.displayName,
+            last: user.displayName,
+            username: user.displayName,
+            comments: 0,
+            votes:0
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        })
+      }, 
+
+      facebook() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          console.log("done");
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            first: user.displayName,
+            last: user.displayName,
+            username: user.displayName,
+            comments: 0,
+            votes:0
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+          console.log(errorMessage);
+        });
+      },
+
+      twitter() {
+        var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          console.log("done");
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            first: user.displayName,
+            last: user.displayName,
+            username: user.displayName,
+            comments: 0,
+            votes:0
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+          console.log(errorMessage);
+        });
+      }
    }
   }
 </script>
