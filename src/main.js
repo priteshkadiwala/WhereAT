@@ -10,6 +10,8 @@ import App from './App'
 import Routes from './router/index'
 
 import * as firebase from 'firebase'
+//import * as admin from 'firebase-admin'
+var serviceAccount = require("./whereat-e16ee-firebase-adminsdk-xx9ks-01017324cc.json");
 
 Vue.use(Vuetify)
 Vue.use(VueRouter);
@@ -35,6 +37,10 @@ new Vue({
     	databaseURL: 'https://whereat-e16ee.firebaseio.com',
     	projectId: 'whereat-e16ee',
     	storageBucket: 'whereat-e16ee.appspot.com',
-  		})
+  		});
+  	/*admin.initializeApp({
+  		credential: admin.credential.cert(serviceAccount),
+  		databaseURL: "https://whereat-e16ee.firebaseio.com"
+  	})*/
 	}
 })

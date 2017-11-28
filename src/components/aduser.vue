@@ -20,6 +20,7 @@
 
 <script>
 import * as firebase from 'firebase'
+//import * as admin from 'firebase-admin'
   export default {
     components: {
 
@@ -44,7 +45,8 @@ import * as firebase from 'firebase'
     },
     methods: {
       deletes(user){
-        var ref = firebase.database().ref('/profiles/' + user.key);
+        var temp = user.key;
+        var ref = firebase.database().ref('/profiles/' + temp);
         ref.remove();
         location.reload();
       }

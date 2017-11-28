@@ -102,6 +102,7 @@ import * as firebase from 'firebase'
     },
     computed: {
       comparePasswords () {
+        console.log(firebase.auth().currentUser);
         return this.password !== this.confirmPassword ? 'Passwords do not match' : true
       }
     },

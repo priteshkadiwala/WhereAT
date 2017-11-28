@@ -11,7 +11,17 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
+    "dgram": "^1.0.1",
+    "dns": "^0.2.2",
     "firebase": "^4.6.0",
+    "firebase-admin": "^5.5.1",
+    "fs": "0.0.1-security",
+    "jquery": "^3.2.1",
+    "net": "^1.0.2",
+    "nodemailer": "^4.4.0",
+    "popper": "^1.0.1",
+    "tls": "0.0.1",
     "vue": "^2.4.2",
     "vue-google-autocomplete": "^1.0.13",
     "vue-paypal-checkout": "^2.1.8",

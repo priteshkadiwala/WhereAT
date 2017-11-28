@@ -29,6 +29,7 @@
 
 <script>
 import * as firebase from 'firebase'
+//import * as nodemailer from 'nodemailer'
 export default {
 
   data () {
@@ -40,6 +41,30 @@ export default {
   },
   methods: {
   	submit() {
+      /*let transporter = nodemailer.createTransporter({
+          service: 'gmail',
+          secure: 'false',
+          port: 25,
+          auth: {
+            user: 'whereatemail@gmail.com',
+            pass: 'whereat111'
+          },
+          tls: {
+            rejectUnauthorized: false
+          }
+        });
+      let HelperOptions = {
+        from: '"Where at" <whereatemail@gmail.com',
+        to: 'kleaf.gbit@gmail.com',
+        subject: "hello",
+        text: "hey howdy"
+      };
+      transporter.sendMail(HelperOptions, (error, info) => {
+        if(error) {
+            console.log(error);
+        }
+      });*/
+
   		var ref = firebase.database().ref('/invites');
   		var key = ref.push(this.invite);
   		key = key.path.pieces_[1];
