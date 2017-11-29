@@ -9,13 +9,18 @@
         <v-layout row wrap class="ma-4" >
           <v-flex xs4 class="pa-4" v-for="(at, index) in ats">
             <v-card class="elevation-10">
-              <v-card-media :src="at.imageUrl" height="200px">
+              <v-card-media class="image" @click="clicked(at)" :src="at.imageUrl" height="200px">
               </v-card-media>
               <v-card-title primary-title>
                 <div>
                   <h3 class="headline mb-0">{{at.place.name}}</h3>
                   <div>{{at.describe}}</div>
                 </div>
+                <v-spacer></v-spacer>
+                  <v-badge class="ma-3" color="red">
+                    <span slot="badge">2</span>
+                    <v-icon large color="grey">priority_high</v-icon>
+                    </v-badge>
               </v-card-title>
             </v-card>
           </v-flex>
@@ -61,7 +66,20 @@ export default {
       });
     });
 
+  },
+  methods: {
+    clicked(at) {
+        console.log(at);
+        this.$router.push('/view/' + at.key);
+    },
   }
 }
 
 </script>
+<style scoped>
+  .image:hover {
+      cursor: pointer; 
+  }
+
+
+</style>

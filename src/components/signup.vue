@@ -119,8 +119,10 @@ import * as firebase from 'firebase'
                key = key.path.pieces_[1];
                ref.child('/' + key).update({key: key}).then(function(profile){
                  console.log(profile);
+                 
                });
-             }).catch(function(error){
+               this.$router.push('/');
+             }).bind(this).catch(function(error){
                console.log(error.message);
              });
            } else {

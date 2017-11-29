@@ -47,15 +47,73 @@
 									<v-list-tile-title>{{review.title}}</v-list-tile-title>
 									<v-list-tile-sub-title class="display-subheading">{{review.review}}</v-list-tile-sub-title>
 								</v-list-content>
+                <v-spacer></v-spacer>
+                <v-list-tile-action>
+                    <v-btn icon><v-icon>delete</v-icon></v-btn>
+                    </v-list-tile-action>
 							</v-list-tile>
 							<v-divider v-if="index+1 < AtObject.reviews.length"></v-divider>
 						</template>
 					</v-list>
           </v-card>
+         
+
           <div class="text-xs-center">
             <v-layout row justify-center>
               <v-dialog v-model="dialog" persistent max-width="500px">
                 <v-btn class="mb-4" color="indigo darken-4 white--text" slot="activator">Add a review</v-btn>
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">Add a Review</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container grid-list-md>
+                      <v-layout wrap>
+                        <v-flex xs12>
+                          <v-text-field v-model="newReview.title" label="Title"></v-text-field>
+                          <v-text-field v-model="newReview.review" label="Review"></v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-container>
+                    <small>*indicates required field</small>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" flat @click="submit">Submit</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-layout>
+          </div>
+           <v-divider></v-divider>
+          <h4 class="ml-3 pt-3 pl-3">Events</h4>
+          <v-card class="ma-4" v-if="revthere">
+          <v-list>
+            <template v-for="(review, index) in AtObject.reviews">
+              <v-list-tile class="ma-3">
+                <v-list-tile-action class="mb-4 mr-4">
+                  <v-list-tile-action-text>{{review.vote}}</v-list-tile-action-text>
+                  <div >
+                    <v-btn v-on:click="upVote(review)" color="indigo darken-4"><v-icon color="white">arrow_upward</v-icon></v-btn>
+                  </div>
+                </v-list-tile-action>
+                <v-list-content>
+                  <v-list-tile-title>{{review.title}}</v-list-tile-title>
+                  <v-list-tile-sub-title class="display-subheading">{{review.review}}</v-list-tile-sub-title>
+                </v-list-content>
+                <v-spacer></v-spacer>
+                <v-list-tile-action>
+                    <v-btn icon><v-icon>delete</v-icon></v-btn>
+                    </v-list-tile-action>
+              </v-list-tile>
+              <v-divider v-if="index+1 < AtObject.reviews.length"></v-divider>
+            </template>
+          </v-list>
+          </v-card>
+           <div class="text-xs-center">
+            <v-layout row justify-center>
+              <v-dialog v-model="dialog" persistent max-width="500px">
+                <v-btn class="mb-4" color="indigo darken-4 white--text" slot="activator">Add a event</v-btn>
                 <v-card>
                   <v-card-title>
                     <span class="headline">Add a Review</span>

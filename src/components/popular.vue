@@ -20,7 +20,7 @@
         <v-layout row wrap class="ma-4" >
           <v-flex xs4 class="pa-4" v-for="(at, index) in ats">
             <v-card class="elevation-10">
-              <v-card-media :src="at.imageUrl" height="200px">
+              <v-card-media class="image" @click="clicked(at)" :src="at.imageUrl" height="200px">
               </v-card-media>
               <v-card-title primary-title>
                 <div>
@@ -171,8 +171,18 @@ export default {
         this.ats.push(at);
       });
     }
+    },
+    clicked(at) {
+      this.$router.push('/view/' + at.key);
     }
   }
 }
 
 </script>
+<style scoped>
+  .image:hover {
+      cursor: pointer; 
+  }
+
+
+</style>
