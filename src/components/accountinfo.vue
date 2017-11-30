@@ -129,6 +129,12 @@ export default {
       });
       this.disabled = true;
       this.but = false;
+    },
+    delete() {
+    	var ref = firebase.database().ref('/profiles/' + thie.key);
+    	ref.remove();
+    	firebase.auth().currentUser.delete();
+    	firebase.auth().signOut();
     }
   }
 }

@@ -63,6 +63,55 @@ import {bus} from '../main'
             }.bind(this)).catch(function(error){
               console.log("caught error: " + error);
             });
+      },
+      google() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+      },
+      facebook() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+      },
+      twitter() {
+        var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+      },
+      forgot() {
+        firebase.auth().sendPasswordResetEmail(this.email).then(()=>{
+          console.log("Sent");
+        }).catch((error)=> {
+          console.log(error.errorMessage);
+        });
       }
     }
 
