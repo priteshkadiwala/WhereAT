@@ -128,7 +128,7 @@ import * as firebase from 'firebase'
            } else {
              console.log("Passwords do not match");
            }
-         }
+         },
     google() {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function(result){
