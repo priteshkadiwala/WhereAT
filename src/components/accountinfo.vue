@@ -94,7 +94,8 @@ export default {
       username: '',
       last: '',
       but: false,
-      key:''
+      key:'',
+      user: {}
     }
   },
   mounted(){
@@ -102,6 +103,7 @@ export default {
     var ref = firebase.database().ref('/profiles');
     ref.once('value').then((snap)=>{
       snap.forEach((prof)=>{
+      	user = prof.val();
         if (prof.val().email == email) {
           this.email = prof.val().email;
           this.first = prof.val().first;
@@ -129,6 +131,12 @@ export default {
       });
       this.disabled = true;
       this.but = false;
+    },
+    delete() {
+    	var ref = firebase.database().ref('/profiles/' + thie.key);
+    	ref.remove();
+    	firebase.auth().currentUser.delete();
+    	firebase.auth().signOut();
     }
   }
 }
