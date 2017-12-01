@@ -1,0 +1,84 @@
+User Stories to test:
+
+	sort:
+1.		1. go to home page
+		2. search for @
+		3. go over to filter tab and choose tag to filter for
+		4. visually verify that places shown have tag that was searched for
+
+2.	View Pictures:
+		1. go to home page
+		2. search for @
+		3. click on marker
+		4. click through picture viewer
+
+3.	Comment on @:
+		1. go to home page
+		2. search for @
+		3. click on marker
+		4. on @ page, scroll down to comments
+		5. write a comment on bar and click submit button
+		6. visually check for comment, as well as in database
+
+4.	Vote on @:
+		1. go to home page
+		2. search for @
+		3. click on marker
+		4. on @ page, find vote button and click
+		5. visually check number and in database
+
+5.	Edit account:
+		1. click on account page
+		2. click button for editing account
+		3. change information of account
+		4. click submit button
+		5. visually check information and in database
+
+6.	Create an @:
+		1. go to homepage
+		2. search for @
+		3. since it will not exist, click button to create
+		4. fill in information/picture and click submit
+		5. on home page, search for newly created @
+		6. verify in database that @ was created
+
+7.	Report an issue:
+		1. go to report page
+		2. enter information
+		3. click submit
+		4. check e-mail and message is in database
+
+8.	Send an invite to a friend:
+		1. go to invite page
+		2. enter friend's email
+		3. click submit
+		4. verify message is in database
+
+9.	delete locations, accounts, etc
+		1. go to manage tab
+		2. click on tab corresponding to object desried to be deleted
+		3. enter in search box name of desired object
+		4. if search results return a result, click delete
+		5. verify in database onject has been removed
+
+10.	leave and view reviews:
+		1. go to homepage
+		2. search for @
+		3. click on marker
+		4. go to reviews part of page
+		5. visually inspect if any reviews are there
+		6. enter information into review text field
+		7. click submit
+		8. visually ensure correct posting of review, as well as ensuring it is in database
+
+11.	view popular section:
+		1. go to home page
+		2. search for place
+		3. click popular option
+		4. verify that only those locations that have a lot of votes are shown
+
+12.	achievments:
+		1. go to account page
+		2. sroll down to view achievments
+		3. verify that number goes up after voting
+		4. verify that change is relfected visually and in database 
