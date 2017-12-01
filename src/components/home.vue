@@ -70,7 +70,8 @@ export default {
       destination: {lat: 10.0, lng:10.0},
       position1: {lat: 10.0, lng:10.0},
       firstBoxFull: false,
-      position: {lat: 10.0, lng:10.0}
+      position: {lat: 10.0, lng:10.0},
+      geoLoc: {lat: 0, lng: 0},
     }
   },
   watch: {
@@ -81,6 +82,7 @@ export default {
   },
   methods: {
     searchLoc(searchObject) {
+        console.log(searchObject);
         var ref = firebase.database().ref('/ats');
         var vm = this;
         var check = false;
@@ -119,6 +121,7 @@ export default {
           this.firstBoxFull = false;
           return;
         }
+        console.log(this.position1);
         this.searchLoc(this.position1);
         /*var ref = firebase.database().ref('/ats');
         var vm = this;
@@ -175,20 +178,47 @@ export default {
         });
       },
       locationSearch : function() {
-      navigator.geolocation.getCurrentPosition((position) => {
+          var temp1;
+          var bool = false;
+        navigator.geolocation.getCurrentPosition((position) => {
+          var tempPos = {lat: 0, lng: 0};
+          tempPos.lat = position.coords.latitude;
+          tempPos.lng = position.coords.longitude;
+          var temp;
         
-          this.position = {lat: position.coords.latitude, lng: position.coords.longitude};
-          this.center = {lat: position.coords.latitude, lng: position.coords.longitude};
+          var geocoder = new google.maps.Geocoder;
+          
+          geocoder.geocode({location: tempPos}, (results, status) => {
+            if (status == 'OK') {
+              console.log(results);
+              temp = results[0].address_components[1].long_name;
+              console.log(temp);
+              geocoder.geocode({address: temp}, (results, status) =>{
+                if (status == 'OK') {
+                  console.log(results[0].geometry.location.lat());
+                  console.log(results[0].geometry.location.lng());
+                  temp1 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+                  bool = true;
+                  this.searchLoc(temp1);
+                  
+                }
+              });
+              
+            }
+          });
+          
           Vue.$gmapDefaultResizeBus.$emit('resize');
 
         
       });
+      
       //console.log(this.position1);
       
 
       //this.searchLoc(this.position1);
       //console.log(this.currentLocation);
-    }
+    },
+    
   },
 	components: {
 		VuetifyGoogleAutocomplete
