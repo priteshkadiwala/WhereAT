@@ -6,6 +6,7 @@
             <v-toolbar-title class="white--text">My Favorite @'s</v-toolbar-title>
             </div>
         </v-toolbar>
+<<<<<<< HEAD
         <v-layout row wrap class="ma-4" >
           <v-flex xs4 class="pa-4" v-for="(at, index) in ats">
             <v-card class="elevation-10">
@@ -25,6 +26,54 @@
 >>>>>>> claker
                     <v-icon large color="grey">priority_high</v-icon>
                     </v-badge>
+=======
+        <v-layout row wrap class="ma-4">
+          <v-flex xs4 class="pa-4">
+            <v-card class="elevation-10">
+              <v-card-media :src="require('@/assets/newyork.jpg')" height="200px">
+              </v-card-media>
+              <v-card-title primary-title>
+                <div>
+                  <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                  <div>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex xs4 class="pa-4">
+            <v-card class="elevation-10">
+              <v-card-media :src="require('@/assets/newyork.jpg')" height="200px">
+              </v-card-media>
+              <v-card-title primary-title>
+                <div>
+                  <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                  <div>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex xs4 class="pa-4">
+            <v-card class="elevation-10">
+              <v-card-media :src="require('@/assets/newyork.jpg')" height="200px">
+              </v-card-media>
+              <v-card-title primary-title>
+                <div>
+                  <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                  <div>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</div>
+                </div>
+              </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex xs4 class="pa-4">
+            <v-card class="elevation-10">
+              <v-card-media :src="require('@/assets/newyork.jpg')" height="200px">
+              </v-card-media>
+              <v-card-title primary-title>
+                <div>
+                  <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
+                  <div>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</div>
+                </div>
+>>>>>>> pritesh
               </v-card-title>
             </v-card>
           </v-flex>
@@ -34,12 +83,16 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import * as firebase from 'firebase'
+=======
+>>>>>>> pritesh
 
 export default {
 
   data () {
     return {
+<<<<<<< HEAD
       ats: [],
 <<<<<<< HEAD
       header: '',
@@ -85,10 +138,15 @@ export default {
         console.log(at);
         this.$router.push('/view/' + at.key);
     },
+=======
+
+    }
+>>>>>>> pritesh
   }
 }
 
 </script>
+<<<<<<< HEAD
 <style scoped>
   .image:hover {
 <<<<<<< HEAD
@@ -104,3 +162,5 @@ export default {
 
 </style>
 >>>>>>> claker
+=======
+>>>>>>> pritesh

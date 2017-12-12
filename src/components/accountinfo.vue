@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <v-card class="elevation-10 ma-4" color="blue-grey lighten-4">
       <v-toolbar dark color="red darken-4">
           <div class="text-xs-center">
@@ -102,21 +103,29 @@
           </v-card-actions>
         </div>
       </v-card>
+=======
+    <h1>This is acc Info</h1>
+>>>>>>> pritesh
   </div>
 
 </template>
 
 <script>
+<<<<<<< HEAD
 import * as firebase from 'firebase'
 <<<<<<< HEAD
 import {bus} from '../main'
 =======
 >>>>>>> claker
+=======
+
+>>>>>>> pritesh
 export default {
 
   data () {
     return {
 
+<<<<<<< HEAD
       disabled: true,
       votes: '',
       comments: '',
@@ -184,6 +193,8 @@ export default {
     	firebase.auth().currentUser.delete();
     	firebase.auth().signOut();
 >>>>>>> claker
+=======
+>>>>>>> pritesh
     }
   }
 }

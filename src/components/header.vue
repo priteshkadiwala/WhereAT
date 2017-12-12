@@ -34,7 +34,11 @@
               <v-list-tile
                 v-for="subItem in item.itemS"
                 v-bind:key="subItem.title"
+<<<<<<< HEAD
                 @click="signout(subItem)"
+=======
+                @click=""
+>>>>>>> pritesh
                 router-link
                 :to="subItem.link"
                 >
@@ -49,10 +53,14 @@
           </v-list-group>
         </v-list>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <v-list v-for="item in otherItems" :key="item.title" v-if="item.allow">
 =======
         <v-list v-for="item in otherItems" :key="item.title">
 >>>>>>> claker
+=======
+        <v-list v-for="item in otherItems" :key="item.title">
+>>>>>>> pritesh
             <v-list-tile
               @click=""
               router-link
@@ -77,15 +85,22 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import * as firebase from 'firebase'
 import {bus} from '../main';
 
+=======
+>>>>>>> pritesh
   export default {
 
     data () {
       return {
         sideNav: false,
+<<<<<<< HEAD
         signin: false,
+=======
+        signin: true,
+>>>>>>> pritesh
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [
@@ -93,6 +108,7 @@ import {bus} from '../main';
               { icon: "face", title: "Register", link: "/signup" }
             ],
             itemS: [
+<<<<<<< HEAD
               { icon: "account_circle", title: "Account Information", link: "/acc"},
               { icon: "favorite", title: "My @'s", link: "/myats" },
 <<<<<<< HEAD
@@ -101,10 +117,16 @@ import {bus} from '../main';
 =======
               { icon: "lock", title: "Sign Out", link: "" }
 >>>>>>> claker
+=======
+              { icon: "account_circle", title: "Account Information", link: "/acc" },
+              { icon: "favorite", title: "My @'s", link: "/myats" },
+              { icon: "lock", title: "Sign Out", link: "/" }
+>>>>>>> pritesh
             ]
           }
         ],
         otherItems: [
+<<<<<<< HEAD
 <<<<<<< HEAD
           { icon: "create", title: "Create @", link: "/create", allow: true},
           { icon: "credit_card", title: "Donate", link: "/donate", allow: true  },
@@ -158,6 +180,14 @@ import {bus} from '../main';
 
 =======
 >>>>>>> claker
+=======
+          { icon: "create", title: "Create @", link: "/create" },
+          { icon: "credit_card", title: "Donate", link: "/donate" },
+          { icon: "get_app", title: "Invite a friend", link: "/invite" }
+        ]
+      }
+    }
+>>>>>>> pritesh
   }
 
 </script>

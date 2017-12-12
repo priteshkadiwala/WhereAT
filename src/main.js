@@ -9,8 +9,11 @@ import './stylus/main.styl'
 import App from './App'
 import Routes from './router/index'
 
+<<<<<<< HEAD
 import * as firebase from 'firebase'
 
+=======
+>>>>>>> pritesh
 Vue.use(Vuetify)
 Vue.use(VueRouter);
 
@@ -22,6 +25,7 @@ const router = new VueRouter({
   mode: 'history'
 });
 
+<<<<<<< HEAD
 export const bus = new Vue();
 
 new Vue({
@@ -37,4 +41,10 @@ new Vue({
     	storageBucket: 'whereat-e16ee.appspot.com',
   		})
 	}
+=======
+new Vue({
+  el: '#app',
+  router,
+  render: h => h(App)
+>>>>>>> pritesh
 })

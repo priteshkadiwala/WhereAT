@@ -6,6 +6,7 @@ import invite from '../components/invite.vue';
 import myats from '../components/myats.vue';
 import signin from '../components/signin.vue';
 import signup from '../components/signup.vue';
+<<<<<<< HEAD
 import report from '../components/report.vue';
 import view from '../components/viewAt.vue';
 import popular from '../components/popular.vue';
@@ -15,6 +16,8 @@ import aduser from '../components/aduser.vue';
 import direction from '../components/direction.vue';
 =======
 >>>>>>> claker
+=======
+>>>>>>> pritesh
 
 export default [
   {path: '/', component: home},
@@ -24,6 +27,7 @@ export default [
   {path: '/invite', component: invite},
   {path: '/myats', component: myats},
   {path: '/signin', component: signin},
+<<<<<<< HEAD
   {path: '/signup', component: signup},
   {path: '/report', component: report},
   {path: '/view/:id', component: view},
@@ -35,4 +39,7 @@ export default [
 =======
   {path: '/aduser', component: aduser}
 >>>>>>> claker
+=======
+  {path: '/signup', component: signup}
+>>>>>>> pritesh
 ]

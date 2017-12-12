@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <v-layout class="mt-3">
       <v-flex xs12 sm6 offset-sm3>
 <<<<<<< HEAD
@@ -51,15 +52,23 @@
       </v-card>
       </v-flex>
     </v-layout>
+=======
+    <h1>This is invite</h1>
+>>>>>>> pritesh
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import * as firebase from 'firebase'
+=======
+
+>>>>>>> pritesh
 export default {
 
   data () {
     return {
+<<<<<<< HEAD
       invite: {
         email: ''
 <<<<<<< HEAD
@@ -98,6 +107,10 @@ export default {
   		ref.child('/' + key).update({key: key});
   	}
 >>>>>>> claker
+=======
+
+    }
+>>>>>>> pritesh
   }
 }
 

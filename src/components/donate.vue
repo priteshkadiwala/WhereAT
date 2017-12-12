@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 	<div>
     <v-layout class="mt-3">
       <v-flex xs12 sm6 offset-sm3>
@@ -69,4 +70,22 @@ export default {
   	PayPal
   }
 }
+=======
+  <div>
+    <h1>This is donate</h1>
+  </div>
+</template>
+
+<script>
+
+export default {
+
+  data () {
+    return {
+
+    }
+  }
+}
+
+>>>>>>> pritesh
 </script>

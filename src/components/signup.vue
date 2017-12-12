@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
@@ -342,4 +343,22 @@ import {bus} from '../main'
       }
    }
   }
+=======
+  <div>
+    <h1>This is signup</h1>
+  </div>
+</template>
+
+<script>
+
+export default {
+
+  data () {
+    return {
+
+    }
+  }
+}
+
+>>>>>>> pritesh
 </script>

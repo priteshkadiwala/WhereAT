@@ -8,7 +8,11 @@
               <v-card-media
                 class="black--text elevation-10"
                 height="200px"
+<<<<<<< HEAD
                 :src="imageUrl"
+=======
+                :src="require('@/assets/newyork.jpg')"
+>>>>>>> pritesh
               >
                 <v-container fill-height fluid>
                   <v-layout fill-height>
@@ -24,12 +28,16 @@
                   dark
                   class="ma-4"
                   justify-center
+<<<<<<< HEAD
                   raised
                   @click="onPickFile"
+=======
+>>>>>>> pritesh
                   >
                   Upload
                   <v-icon right dark>cloud_upload</v-icon>
                 </v-btn>
+<<<<<<< HEAD
                 <input
                 type="file"
                 style="display: none"
@@ -37,11 +45,14 @@
                 accept="image/*"
                 @change="onFilePicked"
                 />
+=======
+>>>>>>> pritesh
               </div>
               <v-card-text>
                 <v-container>
                   <v-layout row >
                     <v-flex xs6 order-md2 order-xs1>
+<<<<<<< HEAD
                       <!--<v-text-field
                         name="input-1"
                         label="Search for a place"
@@ -71,6 +82,18 @@
                         multi-line
                         required
                         class="mt-3"
+=======
+                      <v-text-field
+                        name="input-1"
+                        label="Search for a place"
+                        required
+                      ></v-text-field>
+                      <v-text-field
+                        name="input-7-1"
+                        label="Describe the place"
+                        multi-line
+                        required
+>>>>>>> pritesh
                       ></v-text-field>
                     </v-flex>
                   </v-layout>
@@ -111,7 +134,11 @@
                 </v-dialog>
               </div>
               <div class="text-xs-center">
+<<<<<<< HEAD
                 <v-btn @click="submit" class="mb-4">submit</v-btn>
+=======
+                <v-btn class="mb-4">submit</v-btn>
+>>>>>>> pritesh
                 <v-btn class="mb-4">clear</v-btn>
               </div>
             </v-card>
@@ -123,17 +150,21 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import * as firebase from 'firebase';
 <<<<<<< HEAD
 =======
 
 >>>>>>> claker
 import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete';
+=======
+>>>>>>> pritesh
 
 export default {
 
   data () {
     return {
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -305,6 +336,31 @@ export default {
 
 =======
 >>>>>>> claker
+=======
+      tagSelect: {
+        Food: false,
+        Casual: false,
+        Upscale: false,
+        Recreational: false,
+        Quiet: false,
+        Popular: false,
+        FamilyFriendly: false,
+        Expensive: false,
+        Cheap: false,
+        Theatre: false,
+        Cultural: false,
+        Sports: false,
+        Nature: false,
+        Exciting: false,
+        Event: false,
+        Unique: false,
+        Historical: false,
+        Trendy: false
+      },
+      dialog: false
+    }
+  }
+>>>>>>> pritesh
 }
 
 </script>

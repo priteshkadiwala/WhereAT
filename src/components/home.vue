@@ -7,6 +7,7 @@
       class="ma-5"
       id="float"
     >
+<<<<<<< HEAD
         <vuetify-google-autocomplete
               id="map"
               placeholder="Enter a place"
@@ -26,12 +27,26 @@
       ref="map"
       id="gmap"
       v-on:click="mapClicked"
+=======
+        <v-text-field prepend-icon="search" hide-details single-line></v-text-field>
+        <v-btn icon>
+          <v-icon>my_location</v-icon>
+        </v-btn>
+        <v-btn icon>
+          <v-icon>more_vert</v-icon>
+        </v-btn>
+    </v-toolbar>
+
+    <gmap-map
+      id="gmap"
+>>>>>>> pritesh
       :center="center"
       :zoom="7"
       style="width: 100vw; height: 100vh"
     >
 
       <gmap-marker
+<<<<<<< HEAD
         :position="position"
         :clickable="true"
         :animation="2"
@@ -46,12 +61,22 @@
         @click="clicked(index)"
       ></gmap-marker>
       <gmap-circle v-if="isRadSearch == true" :radius="radius" :options="{editable: true}"  v-on:radius_changed="updateCircle('radius', $event)" :center="droppedPin"></gmap-circle>
+=======
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="true"
+        @click="center=m.position"
+      ></gmap-marker>
+>>>>>>> pritesh
     </gmap-map>
 
 
 
   </div>
 </template>
+<<<<<<< HEAD
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry
 "></script>
 <script>
@@ -65,12 +90,20 @@ import Vue from 'vue';
 
 
 >>>>>>> claker
+=======
+
+<script>
+import * as VueGoogleMaps from 'vue2-google-maps';
+import Vue from 'vue';
+
+>>>>>>> pritesh
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyBQAPXarYYET2DO3QGvV0kbcpZ8O6lIiqk',
     libraries: 'places' //// If you need to use place input
   }
 });
+<<<<<<< HEAD
 <<<<<<< HEAD
 export default {
 =======
@@ -97,6 +130,19 @@ export default {
 =======
 
 >>>>>>> claker
+=======
+
+export default {
+
+  data () {
+    return {
+      center: {lat: 10.0, lng: 10.0},
+      markers: [{
+        position: {lat: 10.0, lng: 10.0}
+      }, {
+        position: {lat: 11.0, lng: 11.0}
+      }]
+>>>>>>> pritesh
     }
   },
   watch: {
@@ -104,6 +150,7 @@ export default {
       // Call resizePreserveCenter() on all maps
       Vue.$gmapDefaultResizeBus.$emit('resize')
     }
+<<<<<<< HEAD
   },
   methods: {
     updateCircle(radius, $event) {
@@ -365,12 +412,18 @@ export default {
 =======
 
 >>>>>>> claker
+=======
+  }
+}
+
+>>>>>>> pritesh
 </script>
 
 <style scoped>
 #float{
   position: absolute;
   z-index: 2;
+<<<<<<< HEAD
   padding: 10px 0 10px 0;
 }
 <<<<<<< HEAD
@@ -388,13 +441,22 @@ export default {
 }
 
 >>>>>>> claker
+=======
+}
+
+>>>>>>> pritesh
 #gmap{
   position: relative;
   z-index: 1;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 </style>
 =======
 
 </style>
 >>>>>>> claker
+=======
+
+</style>
+>>>>>>> pritesh
