@@ -18,7 +18,11 @@
             </v-card>
           </v-flex>
         </v-layout>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> claker
   </div>
 </template>
 
@@ -52,9 +56,15 @@ import * as firebase from 'firebase'
     },
     methods: {
       deletes(at){
+<<<<<<< HEAD
         this.ats.splice(this.ats.indexOf(at),1);
         var ref = firebase.database().ref('/ats/' + at.key);
         ref.remove();
+=======
+        var ref = firebase.database().ref('/ats/' + at.key);
+        ref.remove();
+        location.reload();
+>>>>>>> claker
       }
     }
   }

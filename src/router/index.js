@@ -11,7 +11,10 @@ import view from '../components/viewAt.vue';
 import popular from '../components/popular.vue';
 import deletes from '../components/delete.vue';
 import aduser from '../components/aduser.vue';
+<<<<<<< HEAD
 import direction from '../components/direction.vue';
+=======
+>>>>>>> claker
 
 export default [
   {path: '/', component: home},
@@ -26,6 +29,10 @@ export default [
   {path: '/view/:id', component: view},
   {path: '/popular', component: popular},
   {path: '/delete', component: deletes},
+<<<<<<< HEAD
   {path: '/aduser', component: aduser},
   {path: '/direction', component: direction}
+=======
+  {path: '/aduser', component: aduser}
+>>>>>>> claker
 ]

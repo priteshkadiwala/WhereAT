@@ -15,9 +15,12 @@
                       v-model="email"
                       type="email"
                       required></v-text-field>
+<<<<<<< HEAD
                       <v-alert v-if="emailTaken" color="error" icon="warning" value="true">
                         This email is already registered!
                       </v-alert>
+=======
+>>>>>>> claker
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -28,9 +31,12 @@
                       id="userN"
                       v-model="userN"
                       required></v-text-field>
+<<<<<<< HEAD
                       <v-alert v-if="userNTaken" color="error" icon="warning" value="true">
                         This username is already taken!
                       </v-alert>
+=======
+>>>>>>> claker
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -77,6 +83,7 @@
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
+<<<<<<< HEAD
                     <div class="text-xs-center">
                       <v-btn type="submit">Sign up</v-btn>
 
@@ -100,6 +107,14 @@
             </v-container>
           </v-card-text>
 
+=======
+                    <v-btn type="submit">Sign up</v-btn>
+                  </v-flex>
+                </v-layout>
+              </form>
+            </v-container>
+          </v-card-text>
+>>>>>>> claker
         </v-card>
       </v-flex>
     </v-layout>
@@ -108,7 +123,10 @@
 
 <script>
 import * as firebase from 'firebase'
+<<<<<<< HEAD
 import {bus} from '../main'
+=======
+>>>>>>> claker
 
   export default {
     data () {
@@ -118,10 +136,14 @@ import {bus} from '../main'
         confirmPassword: '',
         first: '',
         last: '',
+<<<<<<< HEAD
         userN: '',
         emailTaken: false,
         userNTaken: false,
         admin: false
+=======
+        userN: ''
+>>>>>>> claker
       }
     },
     computed: {
@@ -132,6 +154,7 @@ import {bus} from '../main'
     methods: {
      submit() {
            if(this.password === this.confirmPassword) {
+<<<<<<< HEAD
              var ref2 = firebase.database().ref('/profiles');
              ref2.once('value').then((snap) => {
 
@@ -148,6 +171,8 @@ import {bus} from '../main'
              }).then(()=>{
              console.log(this.userNTaken);
              if(!this.userNTaken){
+=======
+>>>>>>> claker
              firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) =>{
                var ref = firebase.database().ref('/profiles');
                var profile = {
@@ -156,14 +181,20 @@ import {bus} from '../main'
                  last: this.last,
                  username: this.userN,
                  comments: 0,
+<<<<<<< HEAD
                  votes: 0,
                  admin: false
                };
 
+=======
+                 votes: 0
+               };
+>>>>>>> claker
                var key = ref.push(profile);
                key = key.path.pieces_[1];
                ref.child('/' + key).update({key: key}).then(function(profile){
                  console.log(profile);
+<<<<<<< HEAD
 
                });
                this.$router.push('/');
@@ -173,6 +204,14 @@ import {bus} from '../main'
                console.log(error.message);
              }.bind(this));
            }});
+=======
+                 
+               });
+               this.$router.push('/');
+             }).bind(this).catch(function(error){
+               console.log(error.message);
+             });
+>>>>>>> claker
            } else {
              console.log("Passwords do not match");
            }
@@ -190,23 +229,35 @@ import {bus} from '../main'
             last: user.displayName,
             username: user.displayName,
             comments: 0,
+<<<<<<< HEAD
             votes:0,
             admin: false
+=======
+            votes:0
+>>>>>>> claker
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+<<<<<<< HEAD
           this.$router.push('/');
           bus.$emit('signChange', true);
           }.bind(this)).catch(function(error) {
+=======
+          }).catch(function(error) {
+>>>>>>> claker
           var errorCode = error.code;
           var errorMessage = error.message;
           var email = error.email;
           var credential = error.credential;
         })
+<<<<<<< HEAD
       },
+=======
+      }, 
+>>>>>>> claker
       facebook() {
         var provider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(provider).then(function(result){
@@ -222,17 +273,25 @@ import {bus} from '../main'
             last: user.displayName,
             username: user.displayName,
             comments: 0,
+<<<<<<< HEAD
             votes:0,
             admin: false
+=======
+            votes:0
+>>>>>>> claker
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+<<<<<<< HEAD
           this.$router.push('/');
           bus.$emit('signChange', true);
           }.bind(this)).catch(function(error) {
+=======
+          }).catch(function(error) {
+>>>>>>> claker
           var errorCode = error.code;
           var errorMessage = error.message;
           var email = error.email;
@@ -255,17 +314,25 @@ import {bus} from '../main'
             last: user.displayName,
             username: user.displayName,
             comments: 0,
+<<<<<<< HEAD
             votes:0,
             admin: false
+=======
+            votes:0
+>>>>>>> claker
           };
           var key = ref.push(profile);
           key = key.path.pieces_[1];
           ref.child('/' + key).update({key: key}).then(function(profile){
             console.log(profile);
           });
+<<<<<<< HEAD
           this.$router.push('/');
           bus.$emit('signChange', true);
           }.bind(this)).catch(function(error) {
+=======
+          }).catch(function(error) {
+>>>>>>> claker
           var errorCode = error.code;
           var errorMessage = error.message;
           var email = error.email;

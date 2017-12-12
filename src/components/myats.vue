@@ -18,7 +18,11 @@
                 </div>
                 <v-spacer></v-spacer>
                   <v-badge class="ma-3" color="red">
+<<<<<<< HEAD
                     <span slot="badge">{{at.notifications}}</span>
+=======
+                    <span slot="badge">2</span>
+>>>>>>> claker
                     <v-icon large color="grey">priority_high</v-icon>
                     </v-badge>
               </v-card-title>
@@ -37,8 +41,12 @@ export default {
   data () {
     return {
       ats: [],
+<<<<<<< HEAD
       header: '',
 
+=======
+      header: ''
+>>>>>>> claker
     }
   },
   created() {
@@ -59,7 +67,10 @@ export default {
               ref3.once('value').then((at) => {
                 ats.push(at.val());
                 this.ats = ats;
+<<<<<<< HEAD
 
+=======
+>>>>>>> claker
                 console.log(this.ats);
               });
             });
@@ -80,8 +91,16 @@ export default {
 </script>
 <style scoped>
   .image:hover {
+<<<<<<< HEAD
       cursor: pointer;
   }
 
 
 </style>
+=======
+      cursor: pointer; 
+  }
+
+
+</style>
+>>>>>>> claker

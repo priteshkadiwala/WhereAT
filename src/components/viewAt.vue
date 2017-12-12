@@ -24,7 +24,11 @@
       		</v-carousel>
 
           <div class="text-xs-center">
+<<<<<<< HEAD
             <v-btn class="ma-3" v-for="i in AtObject.tagList" round dark color="indigo">{{i}}</v-btn><br />
+=======
+            <v-btn class="ma-3" v-for="i in AtObject.tagList" round color="indigo">{{i}}</v-btn><br />
+>>>>>>> claker
             <v-btn class="ma-3" v-on:click="upVoteAt">Upvote</v-btn>
           </div>
           <v-divider></v-divider>
@@ -49,15 +53,23 @@
 								</v-list-content>
                 <v-spacer></v-spacer>
                 <v-list-tile-action>
+<<<<<<< HEAD
                     <v-btn icon @click="delrev(review)">
 											<v-icon>delete</v-icon></v-btn>
+=======
+                    <v-btn icon><v-icon>delete</v-icon></v-btn>
+>>>>>>> claker
                     </v-list-tile-action>
 							</v-list-tile>
 							<v-divider v-if="index+1 < AtObject.reviews.length"></v-divider>
 						</template>
 					</v-list>
           </v-card>
+<<<<<<< HEAD
 
+=======
+         
+>>>>>>> claker
 
           <div class="text-xs-center">
             <v-layout row justify-center>
@@ -81,12 +93,16 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" flat @click="submit">Submit</v-btn>
+<<<<<<< HEAD
 										<v-btn color="blue darken-1" flat @click="clear">Cancel</v-btn>
+=======
+>>>>>>> claker
                   </v-card-actions>
                 </v-card>
               </v-dialog>
             </v-layout>
           </div>
+<<<<<<< HEAD
 
 
           <v-divider></v-divider>
@@ -113,23 +129,60 @@
                 </v-list-tile-action>
               </v-list-tile>
               <v-divider v-if="index+1 < AtObject.events.length"></v-divider>
+=======
+           <v-divider></v-divider>
+          <h4 class="ml-3 pt-3 pl-3">Events</h4>
+          <v-card class="ma-4" v-if="revthere">
+          <v-list>
+            <template v-for="(review, index) in AtObject.reviews">
+              <v-list-tile class="ma-3">
+                <v-list-tile-action class="mb-4 mr-4">
+                  <v-list-tile-action-text>{{review.vote}}</v-list-tile-action-text>
+                  <div >
+                    <v-btn v-on:click="upVote(review)" color="indigo darken-4"><v-icon color="white">arrow_upward</v-icon></v-btn>
+                  </div>
+                </v-list-tile-action>
+                <v-list-content>
+                  <v-list-tile-title>{{review.title}}</v-list-tile-title>
+                  <v-list-tile-sub-title class="display-subheading">{{review.review}}</v-list-tile-sub-title>
+                </v-list-content>
+                <v-spacer></v-spacer>
+                <v-list-tile-action>
+                    <v-btn icon><v-icon>delete</v-icon></v-btn>
+                    </v-list-tile-action>
+              </v-list-tile>
+              <v-divider v-if="index+1 < AtObject.reviews.length"></v-divider>
+>>>>>>> claker
             </template>
           </v-list>
           </v-card>
            <div class="text-xs-center">
             <v-layout row justify-center>
+<<<<<<< HEAD
               <v-dialog v-model="dialog1" persistent max-width="500px">
                 <v-btn class="mb-4" color="indigo darken-4 white--text" slot="activator">Add an event</v-btn>
                 <v-card>
                   <v-card-title>
                     <span class="headline">Add an event</span>
+=======
+              <v-dialog v-model="dialog" persistent max-width="500px">
+                <v-btn class="mb-4" color="indigo darken-4 white--text" slot="activator">Add a event</v-btn>
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">Add a Review</span>
+>>>>>>> claker
                   </v-card-title>
                   <v-card-text>
                     <v-container grid-list-md>
                       <v-layout wrap>
                         <v-flex xs12>
+<<<<<<< HEAD
                           <v-text-field v-model="newEvents.title" label="Title"></v-text-field>
                           <v-text-field v-model="newEvents.eve" label="Event"></v-text-field>
+=======
+                          <v-text-field v-model="newReview.title" label="Title"></v-text-field>
+                          <v-text-field v-model="newReview.review" label="Review"></v-text-field>
+>>>>>>> claker
                         </v-flex>
                       </v-layout>
                     </v-container>
@@ -137,8 +190,12 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
+<<<<<<< HEAD
                     <v-btn color="blue darken-1" flat @click="submitEve">Submit</v-btn>
 										<v-btn color="blue darken-1" flat @click="cleareve">Cancel</v-btn>
+=======
+                    <v-btn color="blue darken-1" flat @click="submit">Submit</v-btn>
+>>>>>>> claker
                   </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -165,6 +222,7 @@ export default {
         description: '',
         votes: '',
         reviews: [],
+<<<<<<< HEAD
 				events: [],
 				notifications:''
       },
@@ -173,6 +231,12 @@ export default {
 			dialog1: false,
       revthere: false,
       evethere: false,
+=======
+      },
+      isForm: false,
+      dialog: false,
+      revthere: false,
+>>>>>>> claker
       key: this.$route.params.id,
       user: '',
       tags: {},
@@ -181,11 +245,14 @@ export default {
         review: '',
         vote: 0
       },
+<<<<<<< HEAD
 			newEvents: {
         title: '',
         eve: '',
         vote: 0
       },
+=======
+>>>>>>> claker
 			fav: true
 
     }
@@ -205,6 +272,7 @@ export default {
 						ref2.update({votes: temp});
 					});
       },
+<<<<<<< HEAD
 			upVoteEve (eve) {
       		eve.vote = eve.vote + 1;
           var ref = firebase.database().ref('/ats/' + this.key);
@@ -219,6 +287,8 @@ export default {
 						ref2.update({votes: temp});
 					});
       },
+=======
+>>>>>>> claker
       upVoteAt() {
       	this.AtObject.votes = this.AtObject.votes + 1;
         var ref = firebase.database().ref('/ats/' + this.key);
@@ -233,12 +303,15 @@ export default {
 					ref2.update({votes: temp});
 				});
       },
+<<<<<<< HEAD
 			clear(){
 				this.dialog = false;
 			},
 			cleareve(){
 				this.dialog1 = false;
 			},
+=======
+>>>>>>> claker
       submit(){
         var ref = firebase.database().ref('ats/' + this.key);
 	       var ret;
@@ -257,7 +330,17 @@ export default {
 								this.AtObject.reviews.push(rev);
 							});
           	});
+<<<<<<< HEAD
 						this.revthere = true;
+=======
+
+
+
+
+
+
+
+>>>>>>> claker
 						var ref2 = firebase.database().ref('/profiles/' + this.user.key);
 						var temp;
 						ref2.once('value').then((snap)=>{
@@ -266,6 +349,7 @@ export default {
 						})
 						.then(()=>{
 							ref2.update({comments: temp});
+<<<<<<< HEAD
 						})
 
 
@@ -292,6 +376,10 @@ export default {
 							});
           	});
 						this.evethere = true;
+=======
+						});
+
+>>>>>>> claker
       },
 			favIt(){
 				this.fav = false;
@@ -308,6 +396,7 @@ export default {
 			.then(()=>{
 				ref.update({favorites:ret});
 			});
+<<<<<<< HEAD
 		},
 		delrev(rev){
 			var index = this.AtObject.reviews.indexOf(rev);
@@ -324,6 +413,9 @@ export default {
 				notifications: this.AtObject.notifications
 			});
 		}
+=======
+			}
+>>>>>>> claker
 
 
 	},
@@ -332,25 +424,35 @@ export default {
       var ref = firebase.database().ref('/ats/' + this.key);
 
       ref.once('value').then((snap)=>{
+<<<<<<< HEAD
         console.log(snap.val());
+=======
+        //console.log(snap.val());
+>>>>>>> claker
         this.place = snap.val().place;
         this.AtObject.pictureUrl = snap.val().imageUrl;
         this.AtObject.description = snap.val().describe;
         this.AtObject.votes = snap.val().votes;
         this.AtObject.reviews = snap.val().reviews;
+<<<<<<< HEAD
 				this.AtObject.events = snap.val().events;
 				this.AtObject.notifications = snap.val().notifications;
 
+=======
+>>>>>>> claker
 
         if(this.AtObject.reviews != null){
           console.log(this.AtObject.reviews);
           this.revthere = true
         }
+<<<<<<< HEAD
 				if(this.AtObject.events != null){
 
           this.evethere = true
         }
 
+=======
+>>>>>>> claker
         this.tags = snap.val().tags;
         console.log(snap.val().describe);
         for(var tag in this.tags){
@@ -372,6 +474,13 @@ export default {
 
       console.log(this.AtObject.reviews);
 
+<<<<<<< HEAD
+=======
+  },
+  created(){
+
+
+>>>>>>> claker
   }
 
 }

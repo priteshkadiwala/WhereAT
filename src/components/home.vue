@@ -14,7 +14,11 @@
               v-on:placechanged="getAddressData"
         ></vuetify-google-autocomplete>
 
+<<<<<<< HEAD
         
+=======
+        <v-btn @click.prevent="locationSearch"><v-icon>location_searching</v-icon></v-btn>
+>>>>>>> claker
 
     </v-toolbar>
 
@@ -55,13 +59,25 @@ import * as firebase from 'firebase';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete';
 import Vue from 'vue';
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> claker
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyBQAPXarYYET2DO3QGvV0kbcpZ8O6lIiqk',
     libraries: 'places' //// If you need to use place input
   }
 });
+<<<<<<< HEAD
 export default {
+=======
+
+export default {
+
+>>>>>>> claker
   data () {
     return {
       center: {lat: 40.41937731534847, lng: -86.90005302429199},
@@ -77,6 +93,10 @@ export default {
       droppedLocs: [],
       droppedAt: [],
       radius: 5000,
+<<<<<<< HEAD
+=======
+
+>>>>>>> claker
     }
   },
   watch: {
@@ -93,10 +113,18 @@ export default {
         this.center = this.droppedPin;
         ref.once('value').then(snap=> {
           snap.forEach(at=>{
+<<<<<<< HEAD
             //console.log(addressData);
 
             var target = new google.maps.LatLng(at.val().place.lat, at.val().place.long);
 
+=======
+
+            //console.log(addressData);
+            
+            var target = new google.maps.LatLng(at.val().place.lat, at.val().place.long);
+            
+>>>>>>> claker
             var center = new google.maps.LatLng(this.center.lat, this.center.lng);
             var distance = google.maps.geometry.spherical.computeDistanceBetween(center, target) / 1000;
             if (distance < (this.radius / 1000)) {
@@ -104,24 +132,42 @@ export default {
                 this.droppedAt.push(at.val())
                 console.log(this.droppedLocs);
             }
+<<<<<<< HEAD
         });
 
+=======
+
+        });
+          
+>>>>>>> claker
       });
     },
     mapClicked(mouseArgs) {
         this.droppedLocs = [];
         var ref = firebase.database().ref('/ats');
         var vm = this;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> claker
         this.droppedPin.lat = mouseArgs.latLng.lat();
         this.droppedPin.lng = mouseArgs.latLng.lng();
         this.center = this.droppedPin;
         ref.once('value').then(snap=> {
           snap.forEach(at=>{
+<<<<<<< HEAD
             //console.log(addressData);
 
             var target = new google.maps.LatLng(at.val().place.lat, at.val().place.long);
 
+=======
+
+            //console.log(addressData);
+            
+            var target = new google.maps.LatLng(at.val().place.lat, at.val().place.long);
+            
+>>>>>>> claker
             var center = new google.maps.LatLng(this.center.lat, this.center.lng);
             var distance = google.maps.geometry.spherical.computeDistanceBetween(center, target) / 1000;
             if (distance < (this.radius / 1000)) {
@@ -130,8 +176,14 @@ export default {
                 this.droppedAt.push(at.val());
                 console.log(this.droppedLocs);
             }
+<<<<<<< HEAD
         });
 
+=======
+
+        });
+          
+>>>>>>> claker
       });
       this.isRadSearch = true;
     },
@@ -141,26 +193,53 @@ export default {
         var check = false;
         ref.once('value').then(snap=> {
           snap.forEach(at=>{
+<<<<<<< HEAD
+=======
+
+>>>>>>> claker
             //console.log(addressData);
             console.log(at.val().place.lat == searchObject.lat && at.val().place.long == searchObject.lng);
             if(at.val().place.lat == searchObject.lat && at.val().place.long == searchObject.lng){
               this.position = {lat: searchObject.lat, lng: searchObject.lng};
               this.center = {lat: searchObject.lat, lng: searchObject.lng};
               check = true;
+<<<<<<< HEAD
               this.firstBoxFull = true;
               this.key = at.key
             }
           });
           //
           if(!check) {
+=======
+
+              this.firstBoxFull = true;
+              this.key = at.key
+            }
+
+
+          });
+          //
+          if(!check) {
+
+>>>>>>> claker
               var pack = {
                 lat: this.position1.lat,
                 lng: this.position1.lng,
                 name: this.name
+<<<<<<< HEAD
               };
               this.$router.push('/create');
               //console.log(pack);
           }
+=======
+
+              };
+
+              this.$router.push('/create');
+              //console.log(pack);
+          }
+
+>>>>>>> claker
         });
     },
     getAddressData (addressData, placeResultData) {
@@ -175,7 +254,14 @@ export default {
         }
         this.name = placeResultData.name;
         this.searchLoc(this.position1);
+<<<<<<< HEAD
     },
+=======
+
+
+    },
+
+>>>>>>> claker
     clicked(index){
       console.log(index);
       if (isNaN(index)) {
@@ -202,13 +288,21 @@ export default {
         });
       },
       locationSearch : function() {
+<<<<<<< HEAD
 
+=======
+          
+>>>>>>> claker
           /*var temp1;
           var bool = false;*/
         navigator.geolocation.getCurrentPosition((position) => {
           console.log(position);
            this.position1.lat = position.coords.latitude;
+<<<<<<< HEAD
            this.position1.lng = position.coords.longitude;
+=======
+           this.position1.lng = position.coords.longitude;     
+>>>>>>> claker
            this.position = {lat: position.coords.latitude, lng: position.coords.longitude};
            this.center = {lat: position.coords.latitude, lng: position.coords.longitude};
            Vue.$gmapDefaultResizeBus.$emit('resize');
@@ -216,7 +310,13 @@ export default {
           tempPos.lat = position.coords.latitude;
           tempPos.lng = position.coords.longitude;
           var temp;
+<<<<<<< HEAD
           var geocoder = new google.maps.Geocoder;
+=======
+
+          var geocoder = new google.maps.Geocoder;
+
+>>>>>>> claker
           geocoder.geocode({location: tempPos}, (results, status) => {
             if (status == 'OK') {
               console.log(results);
@@ -229,6 +329,7 @@ export default {
                   temp1 = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
                   bool = true;
                   this.searchLoc(temp1);
+<<<<<<< HEAD
                 }
               });
             }*/
@@ -237,6 +338,22 @@ export default {
           Vue.$gmapDefaultResizeBus.$emit('resize');
       },
       //console.log(this.position1);
+=======
+
+                }
+              });
+
+            }*/
+          });
+          this.searchLoc(this.position1);
+
+          Vue.$gmapDefaultResizeBus.$emit('resize');
+
+      },
+
+      //console.log(this.position1);
+
+>>>>>>> claker
       //this.searchLoc(this.position1);
       //console.log(this.currentLocation);
     },
@@ -244,6 +361,10 @@ export default {
     VuetifyGoogleAutocomplete
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> claker
 </script>
 
 <style scoped>
@@ -252,13 +373,28 @@ export default {
   z-index: 2;
   padding: 10px 0 10px 0;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> claker
 #float1{
   position: absolute;
   z-index: 2;
   padding: 10px 0 10px 0;
+<<<<<<< HEAD
 }
+=======
+
+}
+
+>>>>>>> claker
 #gmap{
   position: relative;
   z-index: 1;
 }
+<<<<<<< HEAD
 </style>
+=======
+
+</style>
+>>>>>>> claker

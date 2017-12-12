@@ -8,7 +8,14 @@
         </v-toolbar>
         <div class="text-xs-center mt-3">
 
+<<<<<<< HEAD
 
+=======
+          <v-chip color="orange" text-color="white">
+            Admin
+            <v-icon right>star</v-icon>
+          </v-chip>
+>>>>>>> claker
 
           <v-chip color="primary" text-color="white">
             <v-avatar class="blue darken-4">{{this.votes}}</v-avatar>
@@ -20,6 +27,20 @@
             Comments
           </v-chip>
 
+<<<<<<< HEAD
+=======
+          <v-chip color="green" text-color="white">
+            <v-avatar class="green darken-4">1</v-avatar>
+            Years
+          </v-chip>
+
+          <v-chip close color="teal" text-color="white">
+            <v-avatar>
+              <v-icon>check_circle</v-icon>
+            </v-avatar>
+            Confirmed
+          </v-chip>
+>>>>>>> claker
 
           <v-layout  class="ma-4">
             <v-flex xs4 >
@@ -55,6 +76,7 @@
           <v-divider></v-divider>
           <v-card-actions v-if="!but">
             <v-btn color="red darken-1" flat @click="clicked">Edit Account</v-btn>
+<<<<<<< HEAD
             <v-btn color="red darken-1" flat @click.stop="dialog = true">Delete Account</v-btn>
             <v-dialog v-model="dialog" max-width="290">
               <v-card>
@@ -72,6 +94,8 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
+=======
+>>>>>>> claker
           </v-card-actions>
           <v-card-actions v-if="but">
             <v-btn color="red darken-1" flat @click="save">Save Details</v-btn>
@@ -84,7 +108,10 @@
 
 <script>
 import * as firebase from 'firebase'
+<<<<<<< HEAD
 import {bus} from '../main'
+=======
+>>>>>>> claker
 export default {
 
   data () {
@@ -98,8 +125,12 @@ export default {
       username: '',
       last: '',
       but: false,
+<<<<<<< HEAD
       key:'',
       dialog: ''
+=======
+      key:''
+>>>>>>> claker
     }
   },
   mounted(){
@@ -135,6 +166,7 @@ export default {
       this.disabled = true;
       this.but = false;
     },
+<<<<<<< HEAD
     remove() {
       this.dialog = false
     	var ref = firebase.database().ref('/profiles/' + this.key);
@@ -145,6 +177,13 @@ export default {
       bus.$emit('isAdmin', false);
       this.$router.push('/');
 
+=======
+    delete() {
+    	var ref = firebase.database().ref('/profiles/' + thie.key);
+    	ref.remove();
+    	firebase.auth().currentUser.delete();
+    	firebase.auth().signOut();
+>>>>>>> claker
     }
   }
 }

@@ -53,10 +53,17 @@
                     </v-text-field>-->
                     <vuetify-google-autocomplete
                           id="map"
+<<<<<<< HEAD
                           placeholder="Enter a place"
                           types="establishment"
                           v-on:placechanged="getAddressData"
                     ></vuetify-google-autocomplete>
+=======
+                          placeholder="Search for the place"
+                          v-on:placechanged="getAddressData"
+                    ></vuetify-google-autocomplete>
+                      <v-btn @click="geolocation">Geolocation</v-btn>
+>>>>>>> claker
                       <v-text-field
                         name="input-7-1"
                         label="Describe the place"
@@ -117,13 +124,20 @@
 
 <script>
 import * as firebase from 'firebase';
+<<<<<<< HEAD
+=======
+
+>>>>>>> claker
 import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete';
 
 export default {
 
   data () {
     return {
+<<<<<<< HEAD
 
+=======
+>>>>>>> claker
       tagSelect: {
         Casual: false,
         Cheap: false,
@@ -151,11 +165,17 @@ export default {
           long: '',
           name: ''
         },
+<<<<<<< HEAD
         notifications: 0,
         votes: 0,
         describe: '',
         reviews: [],
         events:[]
+=======
+        votes: 0,
+        describe: '',
+        reviews: []
+>>>>>>> claker
       },
       image: null,
       imageUrl: '',
@@ -163,12 +183,19 @@ export default {
         lat: "",
         lng: ""
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> claker
     }
   },
   //mounted: function() {
   // this.geolocation();
+<<<<<<< HEAD
   //},,
+=======
+  //},
+>>>>>>> claker
   methods: {
     submit() {
       var ref = firebase.database().ref('/ats');
@@ -189,9 +216,13 @@ export default {
         ref.update({imageUrl: this.imageUrl});
       });
       });
+<<<<<<< HEAD
       this.$router.push('/');
     },
 
+=======
+    },
+>>>>>>> claker
     onPickFile(){
       this.$refs.fileInput.click();
     },
@@ -209,17 +240,71 @@ export default {
       this.image = files[0];
     },
     getAddressData (addressData, placeResultData) {
+<<<<<<< HEAD
         this.at.place.lat = addressData.latitude;
         this.at.place.long = addressData.longitude;
         this.at.place.name = placeResultData.name;
 
     }
+=======
+
+        console.log(addressData);
+        this.at.place.lat = addressData.latitude;
+        this.at.place.long = addressData.longitude;
+        this.at.place.name = addressData.locality;
+        console.log(this.at.place);
+    },
+    geolocation : function() {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+          this.currentLocation.lat = position.coords.latitude;
+          this.currentLocation.lng = position.coords.longitude;
+      });
+      console.log(this.currentLocation);
+      //the below code could work if needing to use current location in create page
+      /*var geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(this.currentLocation.lat, this.currentLocation.lng);
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+      console.log(results);
+      if (status == google.maps.GeocoderStatus.OK) {
+      console.log(results)
+        if (results[1]) {
+         //formatted address
+         alert(results[0].formatted_address)
+        //find country name
+             for (var i=0; i<results[0].address_components.length; i++) {
+            for (var b=0;b<results[0].address_components[i].types.length;b++) {
+
+            //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+                if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+                    //this is the object you are looking for
+                    city= results[0].address_components[i];
+                    break;
+                }
+            }
+        }
+        //city data
+        alert(city.short_name + " " + city.long_name)
+
+
+        } else {
+          alert("No results found");
+        }
+      } else {
+        alert("Geocoder failed due to: " + status);
+      }
+    });*/
+  }
+>>>>>>> claker
 
   },
 	components: {
 		VuetifyGoogleAutocomplete
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> claker
 }
 
 </script>

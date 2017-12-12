@@ -48,7 +48,11 @@
             </div>
           </v-list-group>
         </v-list>
+<<<<<<< HEAD
         <v-list v-for="item in otherItems" :key="item.title" v-if="item.allow">
+=======
+        <v-list v-for="item in otherItems" :key="item.title">
+>>>>>>> claker
             <v-list-tile
               @click=""
               router-link
@@ -91,12 +95,17 @@ import {bus} from '../main';
             itemS: [
               { icon: "account_circle", title: "Account Information", link: "/acc"},
               { icon: "favorite", title: "My @'s", link: "/myats" },
+<<<<<<< HEAD
               { icon: "lock", title: "Sign Out", link: "" },
               { icon: "directions", title: "Directions", link: "/direction" }
+=======
+              { icon: "lock", title: "Sign Out", link: "" }
+>>>>>>> claker
             ]
           }
         ],
         otherItems: [
+<<<<<<< HEAD
           { icon: "create", title: "Create @", link: "/create", allow: true},
           { icon: "credit_card", title: "Donate", link: "/donate", allow: true  },
           { icon: "get_app", title: "Invite a friend", link: "/invite", allow: true  },
@@ -106,15 +115,28 @@ import {bus} from '../main';
           { icon: "delete_forever", title: "Manage Users", link: "/aduser", allow: false  }
         ],
         admin: false
+=======
+          { icon: "create", title: "Create @", link: "/create" },
+          { icon: "credit_card", title: "Donate", link: "/donate" },
+          { icon: "get_app", title: "Invite a friend", link: "/invite" },
+          { icon: "gavel", title: "Report a problem", link: "/report" },
+          { icon: "stars", title: "Popular @'s", link: "/popular" },
+          { icon: "delete_forever", title: "Delete @'s", link: "/delete" },
+          { icon: "delete_forever", title: "Delete Users", link: "/aduser" }
+        ]
+>>>>>>> claker
       }
     },
     created() {
       bus.$on('signChange', (data) => {
         this.signin = data;
+<<<<<<< HEAD
       });
       bus.$on('isAdmin', (data) => {
         this.otherItems[5].allow = data;
         this.otherItems[6].allow = data;
+=======
+>>>>>>> claker
       })
     },
     methods: {
@@ -123,13 +145,19 @@ import {bus} from '../main';
           firebase.auth().signOut();
           this.signin = false;
           this.sideNav = false;
+<<<<<<< HEAD
           this.otherItems[5].allow = false;
           this.otherItems[6].allow = false;
+=======
+>>>>>>> claker
           this.$router.push("/");
         }
       }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> claker
   }
 
 </script>
