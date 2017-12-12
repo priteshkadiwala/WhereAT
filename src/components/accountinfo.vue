@@ -8,10 +8,7 @@
         </v-toolbar>
         <div class="text-xs-center mt-3">
 
-          <v-chip color="orange" text-color="white">
-            Admin
-            <v-icon right>star</v-icon>
-          </v-chip>
+
 
           <v-chip color="primary" text-color="white">
             <v-avatar class="blue darken-4">{{this.votes}}</v-avatar>
@@ -23,17 +20,6 @@
             Comments
           </v-chip>
 
-          <v-chip color="green" text-color="white">
-            <v-avatar class="green darken-4">1</v-avatar>
-            Years
-          </v-chip>
-
-          <v-chip close color="teal" text-color="white">
-            <v-avatar>
-              <v-icon>check_circle</v-icon>
-            </v-avatar>
-            Confirmed
-          </v-chip>
 
           <v-layout  class="ma-4">
             <v-flex xs4 >

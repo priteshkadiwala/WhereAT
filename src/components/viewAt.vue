@@ -24,7 +24,7 @@
       		</v-carousel>
 
           <div class="text-xs-center">
-            <v-btn class="ma-3" v-for="i in AtObject.tagList" round color="indigo">{{i}}</v-btn><br />
+            <v-btn class="ma-3" v-for="i in AtObject.tagList" round dark color="indigo">{{i}}</v-btn><br />
             <v-btn class="ma-3" v-on:click="upVoteAt">Upvote</v-btn>
           </div>
           <v-divider></v-divider>
