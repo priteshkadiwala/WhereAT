@@ -7,17 +7,23 @@ import myats from '../components/myats.vue';
 import signin from '../components/signin.vue';
 import signup from '../components/signup.vue';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
 import report from '../components/report.vue';
 import view from '../components/viewAt.vue';
 import popular from '../components/popular.vue';
 import deletes from '../components/delete.vue';
 import aduser from '../components/aduser.vue';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import direction from '../components/direction.vue';
 =======
 >>>>>>> claker
 =======
 >>>>>>> pritesh
+=======
+>>>>>>> frontend
 
 export default [
   {path: '/', component: home},
@@ -28,11 +34,15 @@ export default [
   {path: '/myats', component: myats},
   {path: '/signin', component: signin},
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
   {path: '/signup', component: signup},
   {path: '/report', component: report},
   {path: '/view/:id', component: view},
   {path: '/popular', component: popular},
   {path: '/delete', component: deletes},
+<<<<<<< HEAD
 <<<<<<< HEAD
   {path: '/aduser', component: aduser},
   {path: '/direction', component: direction}
@@ -42,4 +52,7 @@ export default [
 =======
   {path: '/signup', component: signup}
 >>>>>>> pritesh
+=======
+  {path: '/aduser', component: aduser}
+>>>>>>> frontend
 ]

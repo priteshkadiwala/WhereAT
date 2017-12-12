@@ -2,10 +2,14 @@
   <div>
         <v-layout row wrap class="ma-4" >
 <<<<<<< HEAD
+<<<<<<< HEAD
           <v-flex xs6 class="pa-4" v-for="(user, index) in users">
 =======
           <v-flex xs4 class="pa-4" v-for="(user, index) in users">
 >>>>>>> claker
+=======
+          <v-flex xs4 class="pa-4" v-for="(user, index) in users">
+>>>>>>> frontend
             <v-card class="elevation-10">
               <v-card-title primary-title>
                 <div>
@@ -14,9 +18,12 @@
                 </div>
                 <v-spacer></v-spacer>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <v-btn class="" color="blue darken-1" flat @click="makeAdmin(user)">Make user Admin</v-btn>
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
                 <v-btn class="" color="blue darken-1" flat @click="deletes(user)">Delete</v-btn>
               </v-card-title>
             </v-card>
@@ -28,6 +35,10 @@
 
 <script>
 import * as firebase from 'firebase'
+<<<<<<< HEAD
+=======
+//import * as admin from 'firebase-admin'
+>>>>>>> frontend
   export default {
     components: {
 
@@ -53,6 +64,7 @@ import * as firebase from 'firebase'
     methods: {
       deletes(user){
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.users.splice(this.users.indexOf(user),1);
         var ref = firebase.database().ref('/profiles/' + user.key);
         ref.remove();
@@ -65,6 +77,12 @@ import * as firebase from 'firebase'
         ref.remove();
         location.reload();
 >>>>>>> claker
+=======
+        var temp = user.key;
+        var ref = firebase.database().ref('/profiles/' + temp);
+        ref.remove();
+        location.reload();
+>>>>>>> frontend
       }
     }
   }

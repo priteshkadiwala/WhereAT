@@ -1,15 +1,23 @@
 <template>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-card-text>
+<<<<<<< HEAD
             <v-container>
+=======
+            <v-container2>
+>>>>>>> frontend
               <form @submit.prevent="submit">
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
+<<<<<<< HEAD
 <<<<<<< HEAD
                       label="Mail"
                       v-model="email"
@@ -19,18 +27,24 @@
                         Please register first!
                       </v-alert>
 =======
+=======
+>>>>>>> frontend
                       name="email"
                       label="Mail"
                       id="email"
                       v-model="email"
                       type="email"
                       required></v-text-field>
+<<<<<<< HEAD
 >>>>>>> claker
+=======
+>>>>>>> frontend
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
+<<<<<<< HEAD
 <<<<<<< HEAD
                       label="Password"
                       v-model="password"
@@ -70,6 +84,8 @@
 
 
 =======
+=======
+>>>>>>> frontend
                       name="password"
                       label="Password"
                       id="password"
@@ -84,6 +100,7 @@
                   </v-flex>
                 </v-layout>
               </form>
+<<<<<<< HEAD
 >>>>>>> claker
             </v-container>
           </v-card-text>
@@ -243,18 +260,95 @@ import {bus} from '../main'
   <div>
     <h1>This is signin</h1>
   </div>
+=======
+            </v-container2>
+          </v-card-text>
+        </v-card>
+        <v-btn v-on:click="google">Google Sign in</v-btn>
+        <v-btn v-on:click="Facebook">Facebook Sign in</v-btn>
+        <v-btn v-on:click="Twitter">Twitter Sign in</v-btn>
+        <v-btn v-on:click="forgot">Reset Password</v-btn>
+      </v-flex>
+    </v-layout>
+  </v-container>
+>>>>>>> frontend
 </template>
 
+
 <script>
+import * as firebase from 'firebase'
 
-export default {
+  export default {
+    data () {
+      return {
+        email: '',
+        password:''
+      }
+    },
 
-  data () {
-    return {
+    methods: {
+      submit() {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function(user){
+              console.log(firebase.auth().currentUser);
+            }).catch(function(error){
+              console.log("caught error: " + error);
+        });      
+      }, 
 
+      google() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+      },
+
+      facebook() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+      },
+
+      twitter() {
+        var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+      },
+
+      forgot() {
+        firebase.auth().sendPasswordResetEmail(this.email).then(()=>{
+          console.log("Sent");
+        }).catch((error)=> {
+          console.log(error.errorMessage);
+        });
+
+      }
     }
   }
-}
-
 </script>
 >>>>>>> pritesh

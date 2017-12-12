@@ -9,10 +9,14 @@
                 class="black--text elevation-10"
                 height="200px"
 <<<<<<< HEAD
+<<<<<<< HEAD
                 :src="imageUrl"
 =======
                 :src="require('@/assets/newyork.jpg')"
 >>>>>>> pritesh
+=======
+                :src="imageUrl"
+>>>>>>> frontend
               >
                 <v-container fill-height fluid>
                   <v-layout fill-height>
@@ -29,15 +33,23 @@
                   class="ma-4"
                   justify-center
 <<<<<<< HEAD
+<<<<<<< HEAD
                   raised
                   @click="onPickFile"
 =======
 >>>>>>> pritesh
+=======
+                  raised
+                  @click="onPickFile"
+>>>>>>> frontend
                   >
                   Upload
                   <v-icon right dark>cloud_upload</v-icon>
                 </v-btn>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
                 <input
                 type="file"
                 style="display: none"
@@ -45,14 +57,20 @@
                 accept="image/*"
                 @change="onFilePicked"
                 />
+<<<<<<< HEAD
 =======
 >>>>>>> pritesh
+=======
+>>>>>>> frontend
               </div>
               <v-card-text>
                 <v-container>
                   <v-layout row >
                     <v-flex xs6 order-md2 order-xs1>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
                       <!--<v-text-field
                         name="input-1"
                         label="Search for a place"
@@ -62,6 +80,7 @@
 
 
                     </v-text-field>-->
+<<<<<<< HEAD
                     <vuetify-google-autocomplete
                           id="map"
 <<<<<<< HEAD
@@ -75,6 +94,16 @@
                     ></vuetify-google-autocomplete>
                       <v-btn @click="geolocation">Geolocation</v-btn>
 >>>>>>> claker
+=======
+                    <vue-google-autocomplete
+                          id="map"
+                          placeholder="Search for the place"
+                          types="(regions)"
+                          v-on:placechanged="getAddressData"
+
+                    ></vue-google-autocomplete>
+
+>>>>>>> frontend
                       <v-text-field
                         name="input-7-1"
                         label="Describe the place"
@@ -82,6 +111,7 @@
                         multi-line
                         required
                         class="mt-3"
+<<<<<<< HEAD
 =======
                       <v-text-field
                         name="input-1"
@@ -94,6 +124,8 @@
                         multi-line
                         required
 >>>>>>> pritesh
+=======
+>>>>>>> frontend
                       ></v-text-field>
                     </v-flex>
                   </v-layout>
@@ -135,10 +167,14 @@
               </div>
               <div class="text-xs-center">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <v-btn @click="submit" class="mb-4">submit</v-btn>
 =======
                 <v-btn class="mb-4">submit</v-btn>
 >>>>>>> pritesh
+=======
+                <v-btn @click="submit" class="mb-4">submit</v-btn>
+>>>>>>> frontend
                 <v-btn class="mb-4">clear</v-btn>
               </div>
             </v-card>
@@ -151,6 +187,7 @@
 
 <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 import * as firebase from 'firebase';
 <<<<<<< HEAD
 =======
@@ -159,6 +196,11 @@ import * as firebase from 'firebase';
 import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete';
 =======
 >>>>>>> pritesh
+=======
+import * as firebase from 'firebase';
+
+import VueGoogleAutocomplete from 'vue-google-autocomplete';
+>>>>>>> frontend
 
 export default {
 
@@ -166,9 +208,12 @@ export default {
     return {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
       tagSelect: {
         Casual: false,
         Cheap: false,
@@ -196,6 +241,7 @@ export default {
           long: '',
           name: ''
         },
+<<<<<<< HEAD
 <<<<<<< HEAD
         notifications: 0,
         votes: 0,
@@ -227,6 +273,16 @@ export default {
 =======
   //},
 >>>>>>> claker
+=======
+        votes: 0,
+        describe: '',
+        reviews: []
+      },
+      image: null,
+      imageUrl: ''
+    }
+  },
+>>>>>>> frontend
   methods: {
     submit() {
       var ref = firebase.database().ref('/ats');
@@ -248,12 +304,16 @@ export default {
       });
       });
 <<<<<<< HEAD
+<<<<<<< HEAD
       this.$router.push('/');
     },
 
 =======
     },
 >>>>>>> claker
+=======
+    },
+>>>>>>> frontend
     onPickFile(){
       this.$refs.fileInput.click();
     },
@@ -271,6 +331,7 @@ export default {
       this.image = files[0];
     },
     getAddressData (addressData, placeResultData) {
+<<<<<<< HEAD
 <<<<<<< HEAD
         this.at.place.lat = addressData.latitude;
         this.at.place.long = addressData.longitude;
@@ -361,6 +422,19 @@ export default {
     }
   }
 >>>>>>> pritesh
+=======
+
+        console.log(addressData);
+        this.at.place.lat = addressData.latitude;
+        this.at.place.long = addressData.longitude;
+        this.at.place.name = addressData.locality;
+        console.log(this.at.place);
+    }
+  },
+	components: {
+		VueGoogleAutocomplete
+	}
+>>>>>>> frontend
 }
 
 </script>

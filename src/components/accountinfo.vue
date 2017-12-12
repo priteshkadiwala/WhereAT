@@ -1,6 +1,9 @@
 <template>
   <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
     <v-card class="elevation-10 ma-4" color="blue-grey lighten-4">
       <v-toolbar dark color="red darken-4">
           <div class="text-xs-center">
@@ -10,13 +13,19 @@
         <div class="text-xs-center mt-3">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> frontend
           <v-chip color="orange" text-color="white">
             Admin
             <v-icon right>star</v-icon>
           </v-chip>
+<<<<<<< HEAD
 >>>>>>> claker
+=======
+>>>>>>> frontend
 
           <v-chip color="primary" text-color="white">
             <v-avatar class="blue darken-4">{{this.votes}}</v-avatar>
@@ -29,7 +38,10 @@
           </v-chip>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> frontend
           <v-chip color="green" text-color="white">
             <v-avatar class="green darken-4">1</v-avatar>
             Years
@@ -41,7 +53,10 @@
             </v-avatar>
             Confirmed
           </v-chip>
+<<<<<<< HEAD
 >>>>>>> claker
+=======
+>>>>>>> frontend
 
           <v-layout  class="ma-4">
             <v-flex xs4 >
@@ -78,6 +93,7 @@
           <v-card-actions v-if="!but">
             <v-btn color="red darken-1" flat @click="clicked">Edit Account</v-btn>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <v-btn color="red darken-1" flat @click.stop="dialog = true">Delete Account</v-btn>
             <v-dialog v-model="dialog" max-width="290">
               <v-card>
@@ -97,20 +113,26 @@
             </v-dialog>
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
           </v-card-actions>
           <v-card-actions v-if="but">
             <v-btn color="red darken-1" flat @click="save">Save Details</v-btn>
           </v-card-actions>
         </div>
       </v-card>
+<<<<<<< HEAD
 =======
     <h1>This is acc Info</h1>
 >>>>>>> pritesh
+=======
+>>>>>>> frontend
   </div>
 
 </template>
 
 <script>
+<<<<<<< HEAD
 <<<<<<< HEAD
 import * as firebase from 'firebase'
 <<<<<<< HEAD
@@ -120,12 +142,18 @@ import {bus} from '../main'
 =======
 
 >>>>>>> pritesh
+=======
+import * as firebase from 'firebase'
+>>>>>>> frontend
 export default {
 
   data () {
     return {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
       disabled: true,
       votes: '',
       comments: '',
@@ -135,11 +163,16 @@ export default {
       last: '',
       but: false,
 <<<<<<< HEAD
+<<<<<<< HEAD
       key:'',
       dialog: ''
 =======
       key:''
 >>>>>>> claker
+=======
+      key:'',
+      user: {}
+>>>>>>> frontend
     }
   },
   mounted(){
@@ -147,6 +180,10 @@ export default {
     var ref = firebase.database().ref('/profiles');
     ref.once('value').then((snap)=>{
       snap.forEach((prof)=>{
+<<<<<<< HEAD
+=======
+      	user = prof.val();
+>>>>>>> frontend
         if (prof.val().email == email) {
           this.email = prof.val().email;
           this.first = prof.val().first;
@@ -176,6 +213,7 @@ export default {
       this.but = false;
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     remove() {
       this.dialog = false
     	var ref = firebase.database().ref('/profiles/' + this.key);
@@ -187,14 +225,19 @@ export default {
       this.$router.push('/');
 
 =======
+=======
+>>>>>>> frontend
     delete() {
     	var ref = firebase.database().ref('/profiles/' + thie.key);
     	ref.remove();
     	firebase.auth().currentUser.delete();
     	firebase.auth().signOut();
+<<<<<<< HEAD
 >>>>>>> claker
 =======
 >>>>>>> pritesh
+=======
+>>>>>>> frontend
     }
   }
 }

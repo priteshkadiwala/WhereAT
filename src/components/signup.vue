@@ -1,5 +1,8 @@
 <template>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> frontend
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
@@ -17,11 +20,14 @@
                       type="email"
                       required></v-text-field>
 <<<<<<< HEAD
+<<<<<<< HEAD
                       <v-alert v-if="emailTaken" color="error" icon="warning" value="true">
                         This email is already registered!
                       </v-alert>
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -33,11 +39,14 @@
                       v-model="userN"
                       required></v-text-field>
 <<<<<<< HEAD
+<<<<<<< HEAD
                       <v-alert v-if="userNTaken" color="error" icon="warning" value="true">
                         This username is already taken!
                       </v-alert>
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -85,6 +94,7 @@
                 <v-layout row>
                   <v-flex xs12>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div class="text-xs-center">
                       <v-btn type="submit">Sign up</v-btn>
 
@@ -109,12 +119,15 @@
           </v-card-text>
 
 =======
+=======
+>>>>>>> frontend
                     <v-btn type="submit">Sign up</v-btn>
                   </v-flex>
                 </v-layout>
               </form>
             </v-container>
           </v-card-text>
+<<<<<<< HEAD
 >>>>>>> claker
         </v-card>
       </v-flex>
@@ -347,18 +360,156 @@ import {bus} from '../main'
   <div>
     <h1>This is signup</h1>
   </div>
+=======
+        </v-card>
+        <v-btn v-on:click="google">Google Sign in</v-btn>
+        <v-btn v-on:click="facebook">Facebook Sign in</v-btn>
+        <v-btn v-on:click="twitter">twitter Sign in</v-btn>
+      </v-flex>
+    </v-layout>
+  </v-container>
+>>>>>>> frontend
 </template>
 
 <script>
+import * as firebase from 'firebase'
 
-export default {
+  export default {
+    data () {
+      return {
+        email: '',
+        password: '',
+        confirmPassword: '',
+        first: '',
+        last: '',
+        userN: ''
+      }
+    },
+    computed: {
+      comparePasswords () {
+        console.log(firebase.auth().currentUser);
+        return this.password !== this.confirmPassword ? 'Passwords do not match' : true
+      }
+    },
+    methods: {
+     submit() {
+           if(this.password === this.confirmPassword) {
+             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) =>{
+               var ref = firebase.database().ref('/profiles');
+               var profile = {
+                 email: user.email,
+                 first: this.first,
+                 last: this.last,
+                 username: this.userN,
+                 comments: 0,
+                 votes: 0
+               };
+               var key = ref.push(profile);
+               key = key.path.pieces_[1];
+               ref.child('/' + key).update({key: key}).then(function(profile){
+                 console.log(profile);
+               });
+             }).catch(function(error){
+               console.log(error.message);
+             });
+           } else {
+             console.log("Passwords do not match");
+           }
+         },
 
-  data () {
-    return {
+      google() {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(user);
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            first: user.displayName,
+            last: user.displayName,
+            username: user.displayName,
+            comments: 0,
+            votes:0
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        })
+      }, 
 
-    }
-  }
-}
+      facebook() {
+        var provider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          console.log("done");
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            first: user.displayName,
+            last: user.displayName,
+            username: user.displayName,
+            comments: 0,
+            votes:0
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+          console.log(errorMessage);
+        });
+      },
 
+<<<<<<< HEAD
 >>>>>>> pritesh
+=======
+      twitter() {
+        var provider = new firebase.auth.TwitterAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result){
+          console.log("done");
+          var token = result.credential.accessToken;
+          var user = result.user;
+          console.log(firebase.auth().currentUser);
+          console.log(user);
+          var ref = firebase.database().ref('/profiles');
+          var profile = {
+            email: user.email,
+            first: user.displayName,
+            last: user.displayName,
+            username: user.displayName,
+            comments: 0,
+            votes:0
+          };
+          var key = ref.push(profile);
+          key = key.path.pieces_[1];
+          ref.child('/' + key).update({key: key}).then(function(profile){
+            console.log(profile);
+          });
+          }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+          console.log(errorMessage);
+        });
+      }
+   }
+  }
+>>>>>>> frontend
 </script>

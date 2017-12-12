@@ -8,6 +8,7 @@
       id="float"
     >
 <<<<<<< HEAD
+<<<<<<< HEAD
         <vuetify-google-autocomplete
               id="map"
               placeholder="Enter a place"
@@ -35,6 +36,15 @@
         <v-btn icon>
           <v-icon>more_vert</v-icon>
         </v-btn>
+=======
+        <vue-google-autocomplete
+              id="map"
+              placeholder="Enter address"
+              types="(regions)"
+              v-on:placechanged="getAddressData"
+        ></vue-google-autocomplete>
+
+>>>>>>> frontend
     </v-toolbar>
 
     <gmap-map
@@ -46,6 +56,7 @@
     >
 
       <gmap-marker
+<<<<<<< HEAD
 <<<<<<< HEAD
         :position="position"
         :clickable="true"
@@ -65,9 +76,12 @@
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
+=======
+        :position="position"
+>>>>>>> frontend
         :clickable="true"
-        :draggable="true"
-        @click="center=m.position"
+        :animation="2"
+        @click="clicked"
       ></gmap-marker>
 >>>>>>> pritesh
     </gmap-map>
@@ -93,8 +107,11 @@ import Vue from 'vue';
 =======
 
 <script>
+import * as firebase from 'firebase';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import VueGoogleAutocomplete from 'vue-google-autocomplete';
 import Vue from 'vue';
+import {bus} from '../main'
 
 >>>>>>> pritesh
 Vue.use(VueGoogleMaps, {
@@ -137,12 +154,18 @@ export default {
   data () {
     return {
       center: {lat: 10.0, lng: 10.0},
+<<<<<<< HEAD
       markers: [{
         position: {lat: 10.0, lng: 10.0}
       }, {
         position: {lat: 11.0, lng: 11.0}
       }]
 >>>>>>> pritesh
+=======
+      exists: false,
+      key: ''
+      //position: {lat: 10.0, lng: 10.0}
+>>>>>>> frontend
     }
   },
   watch: {
@@ -150,6 +173,7 @@ export default {
       // Call resizePreserveCenter() on all maps
       Vue.$gmapDefaultResizeBus.$emit('resize')
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
   },
   methods: {
@@ -260,6 +284,24 @@ export default {
 =======
 
               this.firstBoxFull = true;
+=======
+  },
+  methods: {
+    getAddressData (addressData, placeResultData) {
+        var ref = firebase.database().ref('/ats');
+        var vm = this;
+        var check = false;
+
+        ref.once('value').then(snap=> {
+          snap.forEach(at=>{
+
+            console.log(addressData);
+            console.log(at.val().place.lat == addressData.latitude && at.val().place.long == addressData.longitude);
+            if(at.val().place.lat == addressData.latitude && at.val().place.long == addressData.longitude){
+              this.position = {lat: addressData.latitude, lng: addressData.longitude};
+              this.center = {lat: addressData.latitude, lng: addressData.longitude};
+              check = true;
+>>>>>>> frontend
               this.key = at.key
             }
 
@@ -268,6 +310,7 @@ export default {
           //
           if(!check) {
 
+<<<<<<< HEAD
 >>>>>>> claker
               var pack = {
                 lat: this.position1.lat,
@@ -407,6 +450,26 @@ export default {
   components: {
     VuetifyGoogleAutocomplete
   }
+=======
+
+              this.$router.push('/create');
+          }
+
+        });
+        //console.log(this.exists);
+
+
+        //console.log(this.markers);
+    },
+    clicked(){
+
+      this.$router.push('/view/' + this.key);
+    }
+  },
+	components: {
+		VueGoogleAutocomplete
+	}
+>>>>>>> frontend
 }
 <<<<<<< HEAD
 =======

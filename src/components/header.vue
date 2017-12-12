@@ -35,10 +35,14 @@
                 v-for="subItem in item.itemS"
                 v-bind:key="subItem.title"
 <<<<<<< HEAD
+<<<<<<< HEAD
                 @click="signout(subItem)"
 =======
                 @click=""
 >>>>>>> pritesh
+=======
+                @click="signout(subItem)"
+>>>>>>> frontend
                 router-link
                 :to="subItem.link"
                 >
@@ -86,21 +90,31 @@
 
 <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 import * as firebase from 'firebase'
 import {bus} from '../main';
 
 =======
 >>>>>>> pritesh
+=======
+import * as firebase from 'firebase'
+import {bus} from '../main';
+
+>>>>>>> frontend
   export default {
 
     data () {
       return {
         sideNav: false,
 <<<<<<< HEAD
+<<<<<<< HEAD
         signin: false,
 =======
         signin: true,
 >>>>>>> pritesh
+=======
+        signin: false,
+>>>>>>> frontend
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [
@@ -108,6 +122,7 @@ import {bus} from '../main';
               { icon: "face", title: "Register", link: "/signup" }
             ],
             itemS: [
+<<<<<<< HEAD
 <<<<<<< HEAD
               { icon: "account_circle", title: "Account Information", link: "/acc"},
               { icon: "favorite", title: "My @'s", link: "/myats" },
@@ -122,6 +137,11 @@ import {bus} from '../main';
               { icon: "favorite", title: "My @'s", link: "/myats" },
               { icon: "lock", title: "Sign Out", link: "/" }
 >>>>>>> pritesh
+=======
+              { icon: "account_circle", title: "Account Information", link: "/acc"},
+              { icon: "favorite", title: "My @'s", link: "/myats" },
+              { icon: "lock", title: "Sign Out", link: "" }
+>>>>>>> frontend
             ]
           }
         ],
@@ -183,8 +203,27 @@ import {bus} from '../main';
 =======
           { icon: "create", title: "Create @", link: "/create" },
           { icon: "credit_card", title: "Donate", link: "/donate" },
-          { icon: "get_app", title: "Invite a friend", link: "/invite" }
+          { icon: "get_app", title: "Invite a friend", link: "/invite" },
+          { icon: "gavel", title: "Report a problem", link: "/report" },
+          { icon: "stars", title: "Popular @'s", link: "/popular" },
+          { icon: "delete_forever", title: "Delete @'s", link: "/delete" },
+          { icon: "delete_forever", title: "Delete Users", link: "/aduser" }
         ]
+      }
+    },
+    created() {
+      bus.$on('signChange', (data) => {
+        this.signin = data;
+      })
+    },
+    methods: {
+      signout(item) {
+        if(item.title === "Sign Out"){
+          firebase.auth().signOut();
+          this.signin = false;
+          this.sideNav = false;
+          this.$router.push("/");
+        }
       }
     }
 >>>>>>> pritesh

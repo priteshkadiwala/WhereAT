@@ -25,10 +25,14 @@
 
           <div class="text-xs-center">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <v-btn class="ma-3" v-for="i in AtObject.tagList" round dark color="indigo">{{i}}</v-btn><br />
 =======
             <v-btn class="ma-3" v-for="i in AtObject.tagList" round color="indigo">{{i}}</v-btn><br />
 >>>>>>> claker
+=======
+            <v-btn class="ma-3" v-for="i in AtObject.tagList" round color="indigo">{{i}}</v-btn><br />
+>>>>>>> frontend
             <v-btn class="ma-3" v-on:click="upVoteAt">Upvote</v-btn>
           </div>
           <v-divider></v-divider>
@@ -51,6 +55,7 @@
 									<v-list-tile-title>{{review.title}}</v-list-tile-title>
 									<v-list-tile-sub-title class="display-subheading">{{review.review}}</v-list-tile-sub-title>
 								</v-list-content>
+<<<<<<< HEAD
                 <v-spacer></v-spacer>
                 <v-list-tile-action>
 <<<<<<< HEAD
@@ -60,17 +65,22 @@
                     <v-btn icon><v-icon>delete</v-icon></v-btn>
 >>>>>>> claker
                     </v-list-tile-action>
+=======
+>>>>>>> frontend
 							</v-list-tile>
 							<v-divider v-if="index+1 < AtObject.reviews.length"></v-divider>
 						</template>
 					</v-list>
           </v-card>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
          
 >>>>>>> claker
 
+=======
+>>>>>>> frontend
           <div class="text-xs-center">
             <v-layout row justify-center>
               <v-dialog v-model="dialog" persistent max-width="500px">
@@ -93,6 +103,7 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" flat @click="submit">Submit</v-btn>
+<<<<<<< HEAD
 <<<<<<< HEAD
 										<v-btn color="blue darken-1" flat @click="clear">Cancel</v-btn>
 =======
@@ -196,6 +207,8 @@
 =======
                     <v-btn color="blue darken-1" flat @click="submit">Submit</v-btn>
 >>>>>>> claker
+=======
+>>>>>>> frontend
                   </v-card-actions>
                 </v-card>
               </v-dialog>
@@ -223,6 +236,7 @@ export default {
         votes: '',
         reviews: [],
 <<<<<<< HEAD
+<<<<<<< HEAD
 				events: [],
 				notifications:''
       },
@@ -237,6 +251,12 @@ export default {
       dialog: false,
       revthere: false,
 >>>>>>> claker
+=======
+      },
+      isForm: false,
+      dialog: false,
+      revthere: false,
+>>>>>>> frontend
       key: this.$route.params.id,
       user: '',
       tags: {},
@@ -246,6 +266,7 @@ export default {
         vote: 0
       },
 <<<<<<< HEAD
+<<<<<<< HEAD
 			newEvents: {
         title: '',
         eve: '',
@@ -253,6 +274,8 @@ export default {
       },
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
 			fav: true
 
     }
@@ -273,6 +296,7 @@ export default {
 					});
       },
 <<<<<<< HEAD
+<<<<<<< HEAD
 			upVoteEve (eve) {
       		eve.vote = eve.vote + 1;
           var ref = firebase.database().ref('/ats/' + this.key);
@@ -289,6 +313,8 @@ export default {
       },
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
       upVoteAt() {
       	this.AtObject.votes = this.AtObject.votes + 1;
         var ref = firebase.database().ref('/ats/' + this.key);
@@ -304,6 +330,7 @@ export default {
 				});
       },
 <<<<<<< HEAD
+<<<<<<< HEAD
 			clear(){
 				this.dialog = false;
 			},
@@ -312,6 +339,8 @@ export default {
 			},
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
       submit(){
         var ref = firebase.database().ref('ats/' + this.key);
 	       var ret;
@@ -331,8 +360,11 @@ export default {
 							});
           	});
 <<<<<<< HEAD
+<<<<<<< HEAD
 						this.revthere = true;
 =======
+=======
+>>>>>>> frontend
 
 
 
@@ -340,7 +372,10 @@ export default {
 
 
 
+<<<<<<< HEAD
 >>>>>>> claker
+=======
+>>>>>>> frontend
 						var ref2 = firebase.database().ref('/profiles/' + this.user.key);
 						var temp;
 						ref2.once('value').then((snap)=>{
@@ -349,6 +384,7 @@ export default {
 						})
 						.then(()=>{
 							ref2.update({comments: temp});
+<<<<<<< HEAD
 <<<<<<< HEAD
 						})
 
@@ -380,6 +416,10 @@ export default {
 						});
 
 >>>>>>> claker
+=======
+						});
+
+>>>>>>> frontend
       },
 			favIt(){
 				this.fav = false;
@@ -396,6 +436,7 @@ export default {
 			.then(()=>{
 				ref.update({favorites:ret});
 			});
+<<<<<<< HEAD
 <<<<<<< HEAD
 		},
 		delrev(rev){
@@ -416,6 +457,9 @@ export default {
 =======
 			}
 >>>>>>> claker
+=======
+			}
+>>>>>>> frontend
 
 
 	},
@@ -425,26 +469,34 @@ export default {
 
       ref.once('value').then((snap)=>{
 <<<<<<< HEAD
+<<<<<<< HEAD
         console.log(snap.val());
 =======
         //console.log(snap.val());
 >>>>>>> claker
+=======
+        //console.log(snap.val());
+>>>>>>> frontend
         this.place = snap.val().place;
         this.AtObject.pictureUrl = snap.val().imageUrl;
         this.AtObject.description = snap.val().describe;
         this.AtObject.votes = snap.val().votes;
         this.AtObject.reviews = snap.val().reviews;
 <<<<<<< HEAD
+<<<<<<< HEAD
 				this.AtObject.events = snap.val().events;
 				this.AtObject.notifications = snap.val().notifications;
 
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
 
         if(this.AtObject.reviews != null){
           console.log(this.AtObject.reviews);
           this.revthere = true
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 				if(this.AtObject.events != null){
 
@@ -453,6 +505,8 @@ export default {
 
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
         this.tags = snap.val().tags;
         console.log(snap.val().describe);
         for(var tag in this.tags){
@@ -475,12 +529,18 @@ export default {
       console.log(this.AtObject.reviews);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> frontend
   },
   created(){
 
 
+<<<<<<< HEAD
 >>>>>>> claker
+=======
+>>>>>>> frontend
   }
 
 }

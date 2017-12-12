@@ -7,16 +7,24 @@
             </div>
         </v-toolbar>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <v-layout row wrap class="ma-4" >
           <v-flex xs4 class="pa-4" v-for="(at, index) in ats">
             <v-card class="elevation-10">
               <v-card-media class="image" @click="clicked(at)" :src="at.imageUrl" height="200px">
+=======
+        <v-layout row wrap class="ma-4" >
+          <v-flex xs4 class="pa-4" v-for="(at, index) in ats">
+            <v-card class="elevation-10">
+              <v-card-media :src="at.imageUrl" height="200px">
+>>>>>>> frontend
               </v-card-media>
               <v-card-title primary-title>
                 <div>
                   <h3 class="headline mb-0">{{at.place.name}}</h3>
                   <div>{{at.describe}}</div>
                 </div>
+<<<<<<< HEAD
                 <v-spacer></v-spacer>
                   <v-badge class="ma-3" color="red">
 <<<<<<< HEAD
@@ -74,6 +82,8 @@
                   <div>Located two hours south of Sydney in the Southern Highlands of New South Wales, ...</div>
                 </div>
 >>>>>>> pritesh
+=======
+>>>>>>> frontend
               </v-card-title>
             </v-card>
           </v-flex>
@@ -84,14 +94,19 @@
 
 <script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 import * as firebase from 'firebase'
 =======
 >>>>>>> pritesh
+=======
+import * as firebase from 'firebase'
+>>>>>>> frontend
 
 export default {
 
   data () {
     return {
+<<<<<<< HEAD
 <<<<<<< HEAD
       ats: [],
 <<<<<<< HEAD
@@ -100,6 +115,10 @@ export default {
 =======
       header: ''
 >>>>>>> claker
+=======
+      ats: [],
+      header: ''
+>>>>>>> frontend
     }
   },
   created() {
@@ -121,9 +140,12 @@ export default {
                 ats.push(at.val());
                 this.ats = ats;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> claker
+=======
+>>>>>>> frontend
                 console.log(this.ats);
               });
             });
@@ -132,6 +154,7 @@ export default {
       });
     });
 
+<<<<<<< HEAD
   },
   methods: {
     clicked(at) {
@@ -142,6 +165,8 @@ export default {
 
     }
 >>>>>>> pritesh
+=======
+>>>>>>> frontend
   }
 }
 

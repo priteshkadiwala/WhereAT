@@ -19,10 +19,14 @@
           </v-flex>
         </v-layout>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
         
 >>>>>>> claker
+=======
+        
+>>>>>>> frontend
   </div>
 </template>
 
@@ -57,6 +61,7 @@ import * as firebase from 'firebase'
     methods: {
       deletes(at){
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.ats.splice(this.ats.indexOf(at),1);
         var ref = firebase.database().ref('/ats/' + at.key);
         ref.remove();
@@ -65,6 +70,11 @@ import * as firebase from 'firebase'
         ref.remove();
         location.reload();
 >>>>>>> claker
+=======
+        var ref = firebase.database().ref('/ats/' + at.key);
+        ref.remove();
+        location.reload();
+>>>>>>> frontend
       }
     }
   }
