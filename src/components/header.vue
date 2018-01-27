@@ -81,7 +81,7 @@ import {bus} from '../main';
     data () {
       return {
         sideNav: false,
-        signin: false,
+        signin: true,
         menuItems: [
           { icon: "account_box", title: "Account",
             itemNS: [
